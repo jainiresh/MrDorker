@@ -5,6 +5,7 @@ const Dorks = ({ domain }) => {
   const [dorks, setDorks] = useState([]);
 
   useEffect(() => {
+    console.log(`Returning results for domain : ${domain}`)
     setDorks(dorkJson['open-redirection']); // Replace with your JSON data
   }, []);
 
