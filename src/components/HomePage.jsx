@@ -6,7 +6,6 @@ const HomePage = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (event) => {
-    event.preventDefault();
     setSubmitted(true); // Flag to indicate form submission
   };
 

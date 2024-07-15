@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import dorkJson from '../dorkFiles/dorks.json';
+import axios from 'axios';
 
 const Dorks = ({ domain }) => {
   const [dorks, setDorks] = useState([]);
 
   useEffect(() => {
-    console.log(`Returning results for domain : ${domain}`)
-    setDorks(dorkJson['open-redirection']); // Replace with your JSON data
+    logToServer(domain)
+    setDorks(dorkJson['open-redirection']); 
   }, []);
 
+  const logToServer = (logData) => {
+    axios.get(`${process.env.REACT_APP_MY_DOMAIN}/api/logs/fetchResultsFor/${logData}`)
+      .then(response => {
+        console.log('Log sent successfully:', logData);
+      })
+      .catch(error => {
+        console.error('Failed to send log:', error);
+      });
+  };
   const handleDorkClick = (dork) => {
     const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(dork)}`;
     window.open(searchUrl, '_blank');
