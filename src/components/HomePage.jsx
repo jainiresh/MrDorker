@@ -39,17 +39,19 @@ const HomePage = () => {
           <div className="col-md-4">
             <div className="card border-primary rounded-lg">
               <div className="card-body">
-                <h2 className="text-center text-primary mb-4">Cybersecurity Awareness</h2>
+                <h2 className="text-center text-primary mb-4">Mr.Dorker</h2>
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label htmlFor="domainInput" className="sr-only">
-                      Enter your domain name
+                      The only dorker you need.
                     </label>
+                    <br />
                     <input
                       type="text"
-                      className="form-control form-control-lg rounded-pill"
+                      className="form-control form-control-lg rounded-pill mt-1"
                       id="domainInput"
-                      placeholder="Enter domain name"
+                      placeholder="Enter your program's main scope domain"
+                      autoComplete='off'
                       value={domain}
                       onChange={handleDomainChange}
                       required
