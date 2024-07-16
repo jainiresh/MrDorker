@@ -50,7 +50,7 @@ const HomePage = () => {
                       type="text"
                       className="form-control form-control-lg rounded-pill mt-1"
                       id="domainInput"
-                      placeholder="Enter your program's main scope domain"
+                      placeholder="Enter your program's main scope domain (redacted.com)"
                       autoComplete='off'
                       value={domain}
                       onChange={handleDomainChange}

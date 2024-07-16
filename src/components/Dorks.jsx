@@ -6,6 +6,7 @@ const Dorks = ({ domain }) => {
   const [dorks, setDorks] = useState([]);
   const [dorkHeader, setDorkHeader] = useState('Open Redirection'); // Default header
   const [headerAnimation, setHeaderAnimation] = useState(false); // State for header animation
+  const [prefix, setPrefix] = useState('site');
 
   useEffect(() => {
     // Initial fetch of dorks
@@ -25,6 +26,10 @@ const Dorks = ({ domain }) => {
   const fetchDorks = (dorkName, headerText) => {
     setDorks(dorkJson[dorkName]);
     setDorkHeader(headerText);
+    if(dorkName == 'company-files')
+      setPrefix('inurl');
+    else
+      setPrefix('site');
     setHeaderAnimation(true);
     logToServer(domain); 
   };
@@ -56,6 +61,13 @@ const Dorks = ({ domain }) => {
             <button onClick={() => fetchDorks('login-dorks', 'Get Login forms')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Get Login forms</button>
             <button onClick={() => fetchDorks('git-dorks', 'Source code disclosure check')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Source code disclosure check</button>
             <button onClick={() => fetchDorks('backup-files', 'Back up files')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Back up files</button>
+            <button onClick={() => fetchDorks('log-files', 'Log Files')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Look Up for logs</button>
+            <button onClick={() => fetchDorks('grafana-files', 'Grafana Panel information')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Does your domain has grafana panels exposed?</button>
+            <button onClick={() => fetchDorks('stat-files', 'Stat files')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Surf up stats</button>
+            <button onClick={() => fetchDorks('server-files', 'Server information')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Server related information</button>
+            <button onClick={() => fetchDorks('config-files', 'Config files')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Scrape exposed config files</button>
+            <button onClick={() => fetchDorks('company-files', 'Company related info')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Company related information</button>
+
             {/* Add more buttons as needed */}
           </div>
         </div>
@@ -69,9 +81,9 @@ const Dorks = ({ domain }) => {
                 key={index}
                 href="#"
                 className="list-group-item list-group-item-action bg-dark text-white border-primary animate__animated animate__fadeIn"
-                onClick={() => handleDorkClick(`site:${domain} AND ${dork}`)}
+                onClick={() => handleDorkClick(`${prefix}:${domain} AND ${dork}`)}
               >
-                {`site:${domain} AND ${dork}`}
+                {`${prefix}:${domain} AND ${dork}`}
               </a>
             ))}
           </div>
