@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Dorks from './Dorks';
-import LinkedInIcon from '@material-ui/icons/LinkedIn'; // Import LinkedIn icon from Material-UI
-import InfoButton from '@material-ui/icons/Info'
+import {ReactComponent as Icon} from '../icons/linkedin-svgrepo-com.svg'
+import {ReactComponent as InfoIcon} from '../icons/pacman-game-gaming-svgrepo-com.svg'
 
 const HomePage = () => {
   const [domain, setDomain] = useState('');
@@ -39,12 +39,12 @@ const HomePage = () => {
               {/* LinkedIn Icon */}
               <li className="nav-item">
                 <a className="nav-link" href="https://www.linkedin.com/in/jainireshj" target='_blank'>
-                  <LinkedInIcon />
+                  <Icon style={{ width: '24px', height: '24px', marginRight: '10px' }} />
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="https://www.topmate.io/jai_niresh_j" target='_blank'>
-                  <InfoButton />
+                  <InfoIcon style={{ width: '24px', height: '24px', marginRight: '10px', marginTop: '5px' }} />
                 </a>
               </li>
             </ul>
