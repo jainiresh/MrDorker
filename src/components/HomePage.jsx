@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import Dorks from './Dorks';
+import LinkedInIcon from '@material-ui/icons/LinkedIn'; // Import LinkedIn icon from Material-UI
+import InfoButton from '@material-ui/icons/Info'
 
 const HomePage = () => {
   const [domain, setDomain] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
     setSubmitted(true); // Flag to indicate form submission
   };
 
@@ -23,12 +26,29 @@ const HomePage = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ml-auto">
+          <div className="collapse navbar-collapse" style={{display: 'flex', justifyContent: 'space-between'}} id="navbarSupportedContent">
+            <div className='ml-auto' id='inital'>
+            <ul className="navbar-nav "> {/* Use mr-auto to push items to the right */}
               <li className="nav-item">
                 <a className="nav-link" href="/">Home</a>
               </li>
             </ul>
+            </div>
+            <div className='mr-auto'  id='end'>
+            <ul className="navbar-nav ">
+              {/* LinkedIn Icon */}
+              <li className="nav-item">
+                <a className="nav-link" href="https://www.linkedin.com/in/jainireshj" target='_blank'>
+                  <LinkedInIcon />
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="https://www.topmate.io/jai_niresh_j" target='_blank'>
+                  <InfoButton />
+                </a>
+              </li>
+            </ul>
+            </div>
           </div>
         </div>
       </nav>
@@ -45,7 +65,6 @@ const HomePage = () => {
                     <label htmlFor="domainInput" className="sr-only">
                       The only dorker you need.
                     </label>
-                    <br />
                     <input
                       type="text"
                       className="form-control form-control-lg rounded-pill mt-1"
