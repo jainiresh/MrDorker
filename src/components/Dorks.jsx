@@ -14,7 +14,7 @@ const Dorks = ({ domain }) => {
   }, []);
 
   const logToServer = (logData) => {
-    axios.get(`${process.env.REACT_APP_MY_DOMAIN}/api/logs/fetchResultsFor/${logData}`)
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/loggingService/log/fetchResults?domain=${logData}`)
       .then(response => {
         console.log('Log sent successfully:', logData);
       })
