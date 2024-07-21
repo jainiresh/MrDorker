@@ -1,1 +1,1 @@
-exports.BACKEND_URL  = process.env.BACKEND_URL || "http://localhost:3002"
+exports.BACKEND_URL  = process.env.REACT_APP_BACKEND_URL || "https://mr-dorker-backend.onrender.com"
