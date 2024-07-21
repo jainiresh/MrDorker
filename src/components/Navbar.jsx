@@ -1,6 +1,7 @@
 import React from 'react'
 import {ReactComponent as LinkedinIcon} from '../icons/linkedin-svgrepo-com.svg'
 import {ReactComponent as InfoIcon} from '../icons/pacman-game-gaming-svgrepo-com.svg'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
@@ -15,9 +16,8 @@ const Navbar = () => {
         <div className='ml-auto' id='inital'>
         <ul className="navbar-nav "> {/* Use mr-auto to push items to the right */}
           <li className="nav-item" style={{display:'flex', flexDirection:'row'}}>
-            <a className="nav-link" href="/">Home</a>
-            <a className="nav-link" href="/about-me">about</a>
-            {/* <a className="nav-link" href="/contact">contact</a> */}
+            <Link style={{textDecoration:'none'}} to={'/'}><a className="nav-link" href="/">Home</a></Link>
+            <Link style={{textDecoration:'none'}} to={'/about-me'}><a className="nav-link" href="/about-me">about</a></Link>
           </li>
         </ul>
         </div>
