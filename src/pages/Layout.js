@@ -11,8 +11,8 @@ const Layout = () => {
     <div>
       <Navbar />
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/about-me" element={<Aboutus />} />
+        <Route exact path="/" element={<Aboutus />} />
+        <Route exact path="/about-me" element={<HomePage />} />
         <Route element={<NotFoundPage />} />
       </Routes>
     </div>
