@@ -4,6 +4,11 @@ import {ReactComponent as InfoIcon} from '../icons/pacman-game-gaming-svgrepo-co
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+  const LinkClasses = "nav-link text-capitalize"
+  const LinkStyles = {
+    textDecoration: 'none'
+  }
+  
   return (
     <div><nav className="navbar navbar-expand-lg navbar-dark bg-dark">
     <div className="container">
@@ -14,16 +19,16 @@ const Navbar = () => {
 
       <div className="collapse navbar-collapse" style={{display: 'flex', justifyContent: 'space-between'}} id="navbarSupportedContent">
         <div className='ml-auto' id='inital'>
-        <ul className="navbar-nav "> {/* Use mr-auto to push items to the right */}
+        <ul className="navbar-nav "> 
           <li className="nav-item" style={{display:'flex', flexDirection:'row'}}>
-            <Link style={{textDecoration:'none'}} to={'/'}><a className="nav-link" href="/">Home</a></Link>
-            <Link style={{textDecoration:'none'}} to={'/about-me'}><a className="nav-link" href="/about-me">about</a></Link>
+            <Link style={LinkStyles} to={'/'}><a className={LinkClasses} href="/">home</a></Link>
+            <Link style={LinkStyles} to={'/feedback'} className={LinkClasses}>feedback</Link>
+            <Link style={LinkStyles} to={'/about-me'} className={LinkClasses}>about</Link>
           </li>
         </ul>
         </div>
         <div className='mr-auto'  id='end'>
         <ul className="navbar-nav ">
-          {/* LinkedIn Icon */}
           <li className="nav-item">
             <a className="nav-link" href="https://www.linkedin.com/in/jainireshj" target='_blank'>
               <LinkedinIcon style={{ width: '24px', height: '24px', marginRight: '10px' }} />

@@ -65,7 +65,7 @@ const AboutUs = () => {
                 <h1 className="profile-title">JAI NIRESH J</h1>
                 <div className="profile-description">
                   <h3>SOFTWARE DEVELOPER - ETHICAL HACKER</h3>
-                  <p>You know how things are built, in order to break them!</p>
+                  <p>It is easy to know how things are built, to efficiently break them!</p>
                 </div>
                 <br />
                 <hr style={{ color: '#f8f9fa' }} />
