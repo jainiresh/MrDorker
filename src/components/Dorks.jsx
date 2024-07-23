@@ -42,7 +42,7 @@ const Dorks = ({ domain }) => {
   return (
     <div className="container mt-5">
       <div className="row">
-        <div className="col-md-4">
+        <div className="col-md-4 col-sm-6">
           <div className="text-center mb-4">
             <h1 className={`text-primary mb-4 ${headerAnimation ? 'animate__animated animate__bounceInLeft' : ''}`}>
               Dorking on {domain}
@@ -71,7 +71,7 @@ const Dorks = ({ domain }) => {
             {/* Add more buttons as needed */}
           </div>
         </div>
-        <div className="col-md-8">
+        <div className="col-sm-6 col-md-8">
           <div className="text-left text-white mb-2 animate__animated animate__fadeInUp">
             <h4>Dorks for finding: {dorkHeader.toUpperCase()}</h4>
           </div>
