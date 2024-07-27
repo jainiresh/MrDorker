@@ -13,6 +13,7 @@ const Layout = () => {
     <div>
       <Navbar />
       <Routes>
+        <Route exact path='/' element={<Dorker />} />
         <Route exact path="/dorker" element={<Dorker />} />
         <Route exact path="/about-me" element={<Aboutus />} />
         <Route exact path='/feedback' element={<Feedback />} />
