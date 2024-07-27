@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dorks from './Dorks';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
-const HomePage = () => {
+const Dorker = () => {
   const [domain, setDomain] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const isLoggedinData = useSelector(state => state);
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(isLoggedinData.error){
+      navigate('/login');
+    }
+  },
+[isLoggedinData])
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-    setSubmitted(true); // Flag to indicate form submission
+    event.preventDefault(); 
+    setSubmitted(true); 
   };
 
   const handleDomainChange = (event) => {
@@ -56,4 +67,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Dorker;

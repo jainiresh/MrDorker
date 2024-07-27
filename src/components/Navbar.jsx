@@ -1,19 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ReactComponent as LinkedinIcon } from '../icons/linkedin-svgrepo-com.svg'
 import { ReactComponent as InfoIcon } from '../icons/pacman-game-gaming-svgrepo-com.svg'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Navbar = () => {
   const LinkClasses = "nav-link text-capitalize px-3"
   const LinkStyles = {
     textDecoration: 'none'
   }
+  const isLoggedinData = useSelector(state => state)
+  const dispatch = useDispatch();
+
+  const logOut = () => {
+    dispatch({type:'UESR_LOGIN_FAILED'})
+  }
+
+  const isLoggedin = isLoggedinData.error == false
 
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container">
-          <a className="navbar-brand" href="/">Mr.Dorker</a>
+          <a className="navbar-brand" href="/dorker">Mr.Dorker</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -22,9 +31,13 @@ const Navbar = () => {
             <div className='ml-auto' id='inital'>
               <ul className="navbar-nav ">
                 <li className="nav-item" style={{ display: 'flex', flexDirection: 'row' }}>
-                  <Link style={LinkStyles} to={'/'}><a className={LinkClasses} href="/">home</a></Link>
+                  {isLoggedin ? <Link style={LinkStyles} to={'/dorker'}><a className={LinkClasses} href="/">dorker</a></Link>
+                  :
+                  <Link style={LinkStyles} to={'/login'}><a className={LinkClasses} href="/login">login</a></Link>}
                   <Link style={LinkStyles} to={'/feedback'} className={LinkClasses}>feedback</Link>
                   <Link style={LinkStyles} to={'/about-me'} className={LinkClasses}>about</Link>
+                  {isLoggedin && <Link style={LinkStyles} className={LinkClasses} onClick={()=> logOut()}>logout</Link>}
+                  
                 </li>
               </ul>
             </div>

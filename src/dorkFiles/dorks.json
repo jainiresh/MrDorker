@@ -16,7 +16,7 @@
   ],
   "excel-files": [
     "company filetype:xls",
-    "company filetype:cvs"
+    "company filetype:csv"
   ],
   "s3-files": [
     "site:http://s3.amazonaws.com intitle:index.of.bucket",

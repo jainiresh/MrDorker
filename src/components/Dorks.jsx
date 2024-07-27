@@ -9,17 +9,16 @@ const Dorks = ({ domain }) => {
   const [prefix, setPrefix] = useState('site');
 
   useEffect(() => {
-    // Initial fetch of dorks
     fetchDorks('open-redirection', 'Open Redirection');
   }, []);
 
   const logToServer = (logData) => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/loggingService/log/fetchResults?domain=${logData}`)
       .then(response => {
-        console.log('Log sent successfully:', logData);
+        // console.log('Log sent successfully:', logData);
       })
       .catch(error => {
-        console.error('Failed to send log:', error);
+        // console.error('Failed to send log:', error);
       });
   };
 
@@ -51,7 +50,7 @@ const Dorks = ({ domain }) => {
               Nah, Feeling too lazy, just click on the dorks.
             </h4>
           </div>
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column" style={{height:'1 rem'}} id='buttonsColumn'>
             <button onClick={() => fetchDorks('db-files', 'Database related Files')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Database related Files</button>
             <button onClick={() => fetchDorks('excel-files', 'Sensitive excel files')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Sensitive excel files</button>
             <button onClick={() => fetchDorks('open-redirection', 'Find Open redirections')} className="btn btn-warning mb-2 animate__animated animate__fadeInLeft">Find Open redirections</button>
