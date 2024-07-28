@@ -21,7 +21,7 @@ async function loginBackendRequest (loginPayload){
 
 async function registrationBackendRequest(registerPayload){
     try {
-        const response = await axios.post(`http://localhost:3002/authService/register`, registerPayload)
+        const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/authService/login", registerPayload)
         // console.log("Register response " + JSON.stringify(response));
         if(!response.data || !(response.data.authToken)){
             return {error: true, userData: '', authToken: ''};
