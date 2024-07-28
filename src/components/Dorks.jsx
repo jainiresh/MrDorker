@@ -33,10 +33,16 @@ const Dorks = ({ domain }) => {
     logToServer(domain); 
   };
 
-  const handleDorkClick = (dork) => {
-    const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(dork)}`;
+  const handleDorkClick = (urlToOpen) => {
+    const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(urlToOpen)}`;
     window.open(searchUrl, '_blank');
   };
+
+  function openAllDorksNow(){
+    dorks.forEach(dork => {
+      handleDorkClick(`${prefix}:${domain} AND ${dork}`);
+    })
+  }
 
   return (
     <div className="container mt-5">
@@ -71,8 +77,9 @@ const Dorks = ({ domain }) => {
           </div>
         </div>
         <div className="col-sm-6 col-md-8">
-          <div className="text-left text-white mb-2 animate__animated animate__fadeInUp">
+          <div className="text-left text-white mb-2 animate__animated animate__fadeInUp" style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
             <h4>Dorks for finding: {dorkHeader.toUpperCase()}</h4>
+            <button className='btn btn-primary' onClick={() => openAllDorksNow()}>Open All Dorks</button>
           </div>
           <div className="list-group" style={{ maxHeight: '800px', overflowY: 'auto' }}>
             {dorks.map((dork, index) => (
