@@ -5,7 +5,7 @@ let userId = 0;
 
 async function loginBackendRequest (loginPayload){
     try{
-        const response =  await axios.post(`http://localhost:3002/authService/login`, loginPayload);
+        const response =  await axios.post( process.env.REACT_APP_BACKEND_URL + `/authService/login`, loginPayload);
         // console.log("Login response : " + JSON.stringify(response))
         if(!response.data || !response.data.authToken){
             return {error: true, userData: '', authToken: ''}
@@ -21,7 +21,7 @@ async function loginBackendRequest (loginPayload){
 
 async function registrationBackendRequest(registerPayload){
     try {
-        const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/authService/login", registerPayload)
+        const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/authService/register", registerPayload)
         // console.log("Register response " + JSON.stringify(response));
         if(!response.data || !(response.data.authToken)){
             return {error: true, userData: '', authToken: ''};
