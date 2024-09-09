@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import {GoogleLogin} from '@react-oauth/google'
 import { LOGIN_URL } from '../../constants/constants';
 
 const GoogleSignInButton = () => {
