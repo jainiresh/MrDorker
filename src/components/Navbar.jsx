@@ -11,12 +11,17 @@ const Navbar = () => {
   }
   const isLoggedinData = useSelector(state => state)
   const dispatch = useDispatch();
+  let searchParams = new URL(window.location.href).search;
+  searchParams =  new URLSearchParams(searchParams);
 
   const logOut = () => {
     dispatch({type:'UESR_LOGIN_FAILED'})
+    window.location.href = '/login'
   }
 
-  const isLoggedin = isLoggedinData.error == false
+ 
+
+  const isLoggedin = searchParams.has('email') && searchParams.has('id') ? true : false
 
   return (
     <div>

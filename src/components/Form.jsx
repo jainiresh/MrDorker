@@ -6,6 +6,7 @@ import constants from '../constants/constants'
 import { Link, useNavigate } from 'react-router-dom';
 import { jsonFormat } from '../utils/jsonUtils';
 import Alert from './Alerts/Alert';
+import GoogleSignInButton from './GoogleSignIn/Button';
 
 
 const Form = ({
@@ -112,28 +113,15 @@ const Form = ({
               </div>
             </> :
             <>
-             <div className='mb-5'>
-                <label htmlFor="input1" className='form-label float-start'>Username</label>
-                <input type="text" onChange={onChangeHandlerForLoginReg} className='form-control' id='username' placeholder='Enter your username here' />
-              </div>
-
-              { isRegistrationForm && <div className='mb-5'>
-                <label htmlFor="input1" className='form-label float-start'>Email</label>
-                <input type="email" onChange={onChangeHandlerForLoginReg} className='form-control' id='email' placeholder='Enter your emailId here' />
-              </div> }
-
-              <div className='mb-5'>
-                <label htmlFor="input2" className='form-label float-start'>Password</label>
-                <input type="password" onChange={onChangeHandlerForLoginReg} className='form-control' id='password' required placeholder='Your password goes here' />
-              </div>
+              <GoogleSignInButton />
             </>
           }
           <div className='mb-5 d-flex' style={{flexDirection:'row', justifyContent:'space-between'}}>
              <div>
-            {isLoginForm && <span>Create an account <Link to={'/register'}>Here</Link> </span>}
+           
             {isRegistrationForm && <span>Already register for Mr.Dorker ? Then login <Link to={'/login'}>Here</Link> </span>}
             </div>
-            <button type='submit' className='btn btn-success float-end'>Send</button>
+            {isRegistrationForm && <button type='submit' className='btn btn-success float-end'>Send</button>}
           </div>
         </form>
       </div>
