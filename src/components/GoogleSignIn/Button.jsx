@@ -1,16 +1,47 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { LOGIN_URL } from '../../constants/constants';
 
+const Button = styled.button`
+  background-color: #4285f4; /* Google Blue */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #357ae8; /* Darker blue on hover */
+  }
+
+  &:focus {
+    outline: 2px solid #fbbc05; /* Google Yellow */
+    outline-offset: 2px;
+  }
+
+  .icon {
+    margin-right: 8px;
+  }
+`;
+
 const GoogleSignInButton = () => {
-  console.log(LOGIN_URL)
   const googleLogin = () => {
-    console.log(LOGIN_URL)
-    
-    window.location.href = LOGIN_URL
+    window.location.href = LOGIN_URL;
   }
 
   return (
-    <button onClick={() => googleLogin()}>Sign in with Google 🚀 </button>
+    <Button onClick={googleLogin}>
+      <FontAwesomeIcon icon={faGoogle} className="icon" />
+      Sign in with Google
+    </Button>
   );
 };
 

@@ -99,7 +99,7 @@ const Form = ({
       <div className='container-fluid'>
         {formSubmitted && <Alert success={true} message={alertMessage} />}
         {errorData && <div id='alert-box' className='offset-3 col-6 alert alert-danger'>Something went wrong!</div>}
-        <form className='col-6 offset-3' onSubmit={isRequestForm ? handleSubmit : handleLoginOrRegistration}>
+        <form className='col-6 offset-3' style={{display:'flex', flexDirection:'column'}} onSubmit={isRequestForm ? handleSubmit : handleLoginOrRegistration}>
           <p className='text-primary text-capitalize display-5 mb-5 text-black'>{isRequestForm ? 'Request a Bug bounty tool to be added here' : formName}</p>
           <p style={{ fontStyle: 'italic' }}>{tagData}</p>
           {isRequestForm ?
