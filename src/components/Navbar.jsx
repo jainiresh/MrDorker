@@ -16,7 +16,7 @@ const Navbar = () => {
 
   const logOut = () => {
     dispatch({type:'UESR_LOGIN_FAILED'})
-    window.location.href = '/login'
+    window.location.href = '/'
   }
 
  
