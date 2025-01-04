@@ -1,15 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Layout from './pages/Layout';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import Layout from './pages/Layout';
+import store from './redux/store';
+import { BrowserRouter } from 'react-router-dom';
+
 
 function App() {
+  
   return (
     <Provider store={store}>
-    <div className="App">
+
+  <BrowserRouter>
       <Layout />
-    </div>
+      </BrowserRouter>
     </Provider>
   );
 }

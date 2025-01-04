@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { LOGIN_URL } from '../../constants/constants';
+import { useNavigate } from 'react-router-dom';
 
 const Button = styled.button`
   background-color: #4285f4; /* Google Blue */
@@ -33,8 +34,10 @@ const Button = styled.button`
 `;
 
 const GoogleSignInButton = () => {
+  const navigate = useNavigate();
   const googleLogin = () => {
-    window.location.href = LOGIN_URL;
+    // window.location.href = LOGIN_URL;
+    navigate('/dorker')
   }
 
   return (

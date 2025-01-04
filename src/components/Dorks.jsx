@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import dorkJson from '../dorkFiles/dorks.json';
-import axios from 'axios';
 
 const Dorks = ({ domain }) => {
   const [dorks, setDorks] = useState([]);

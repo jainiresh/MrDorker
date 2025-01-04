@@ -1,3 +1,88 @@
 exports.BACKEND_URL  = process.env.REACT_APP_BACKEND_URL || ( this.PROD_SWITCH == 0 ? 'http://localhost:3001' :  "https://mr-dorker-backend.onrender.com" ); 
 exports.LOGIN_URL = this.BACKEND_URL + "/authService/nylas/hostedAuth"
 exports.PROD_SWITCH = 1;
+exports.GOOGLE_DORKS_JSON = [
+    { name: "XSS", id: "xss-dorks" },
+    { name: "Amazon Storage Blobs", id: "s3-files" }, 
+    { name: "SQL Injections", id: "sql-dorks" },
+    { name: "Open Redirections", id: "open-redirection" },
+    { name: "Excel Files", id: "excel-files" },
+    { name: "DB Files", id: "db-files" },
+    { name: "Find Login/Signup pages", id: "login-dorks" },
+    { name: "Find Backup Files", id: "backup-files" },
+    { name: "Find Log Files", id: "log-files" },
+    { name: "Find Grafana Exposures", id: "grafana-files" },
+    { name: "Find Stat files", id: "stat-files" },
+    { name: "Find Server files", id: "server-files" },
+    { name: "Find Config files", id: "config-files" },
+    { name: "Company License Files", "id": "company-files" } 
+  ];
+  exports.GITHUB_DORKS_JSON = [
+    { name: "Sensitive Information Exposures", id: "github" }
+  ];
+
+  exports.SHODAN_DORKS_JSON = [
+    { name: "Sensitive Information Exposures", id: "shodan" }
+  ];
+
+  exports.AI_REPORT_HEADINGS = [
+    { label: 'Summary', value: 'Summary' },
+    { label: 'Description', value: 'Description' },
+    { label: 'Steps to Reproduce', value: 'Steps to Reproduce' },
+    { label: 'Expected Behavior', value: 'Expected Behavior' },
+    { label: 'Actual Behavior', value: 'Actual Behavior' },
+    { label: 'Environment', value: 'Environment' },
+    { label: 'Severity', value: 'Severity' },
+    { label: 'Priority', value: 'Priority' },
+    { label: 'Component', value: 'Component' },
+    { label: 'Impact to users', value: 'User Impact' },
+    { label: 'Impact to organization', value: 'organization Impact' },
+    { label: 'Workaround', value: 'Workaround' },
+    { label: 'Labels', value: 'Labels' },
+    { label: 'Assignee', value: 'Assignee' },
+    { label: 'Reporter', value: 'Reporter' },
+    { label: 'Date Reported', value: 'Date Reported' },
+    { label: 'Date Resolved', value: 'Date Resolved' },
+    { label: 'Attachments', value: 'Attachments' },
+    { label: 'Browser', value: 'Browser' },
+    { label: 'Operating System', value: 'Operating System' },
+    { label: 'Device', value: 'Device' },
+    { label: 'Reproducibility', value: 'Reproducibility' },
+    { label: 'Frequency', value: 'Frequency' },
+    { label: 'Customer Name', value: 'Customer Name' },
+    { label: 'Customer ID', value: 'Customer ID' },
+    { label: 'Test Case ID', value: 'Test Case ID' },
+    { label: 'Related Issues', value: 'Related Issues' },
+    { label: 'Log Files', value: 'Log Files' },
+    { label: 'Error Messages', value: 'Error Messages' },
+    { label: 'Screenshots', value: 'Screenshots' },
+    { label: 'Videos', value: 'Videos' },
+    { label: 'Code Snippet', value: 'Code Snippet' }, 
+];
+
+exports.AI_REPORT_VULNS = [
+  {label:"Blind XSS", value:"Blind XSS"},
+  {label:"Stored XSS", value:"Stored XSS"},
+  {label:"Reflected XSS", value:"Reflected XSS"},
+  {label:"DOM Based XSS", value:"DOM Based XSS"},
+  {label:"SQL Injection", value:"SQL Injection"},
+  {label:"Command Injection", value:"Command Injection"},
+  {label:"Cross-Site Request Forgery (CSRF)", value:"Cross-Site Request Forgery (CSRF)"},
+  {label:"Session Hijacking", value:"Session Hijacking"},
+  {label:"Clickjacking", value:"Clickjacking"},
+  {label:"Man-in-the-Middle (MitM) Attack", value:"Man-in-the-Middle (MitM) Attack"},
+  {label:"Brute-Force Attack", value:"Brute-Force Attack"},
+  {label:"Password Spraying", value:"Password Spraying"},
+  {label:"Directory Traversal", value:"Directory Traversal"},
+  {label:"File Inclusion", value:"File Inclusion"},
+  {label:"Server-Side Request Forgery (SSRF)", value:"Server-Side Request Forgery (SSRF)"},
+  {label:"Insecure Direct Object Reference", value:"Insecure Direct Object Reference"},
+  {label:"Broken Access Control", value:"Broken Access Control"},
+  {label:"Security Misconfiguration", value:"Security Misconfiguration"},
+  {label:"Unvalidated Redirects and Forwards", value:"Unvalidated Redirects and Forwards"},
+  {label:"Unrestricted Upload of Files", value:"Unrestricted Upload of Files"},
+  {label:"XML External Entities (XXE)", value:"XML External Entities (XXE)"},
+  {label:"Business Logic Errors", value:"Business Logic Errors"},
+  {label:"Improper Input Validation", value:"Improper Input Validation"}
+];
+ 

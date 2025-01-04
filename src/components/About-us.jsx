@@ -57,50 +57,19 @@ const AboutUs = () => {
             <div className="col-lg-8">
               {/* Profile Section */}
               <section className="profile-section text-center">
-                <img
-                  src="./profile.JPG"
-                  alt="Profile Picture"
-                  className="profile-img"
-                />
-                <h1 className="profile-title">JAI NIRESH J</h1>
-                <div className="profile-description">
-                  <h3>SOFTWARE DEVELOPER - ETHICAL HACKER</h3>
-                  <p>It is easy to know how things are built, to efficiently break them!</p>
-                </div>
-                <br />
-                <hr style={{ color: '#f8f9fa' }} />
-
-                {/* Icon Boxes */}
-                
-                <div className="row justify-content-center pt-5">
-                
-                  <div className="col-lg-4 col-md-4 col-sm-6">
-                  <a href="mailto:nireshpandian191@gmail.com">
-                    <div className="icon-box">
-                      <i className="fas fa-envelope"></i>
-                    </div>
-                    </a>
-                  </div>
-                 
-                 
-                  <div className="col-lg-4 col-md-4 col-sm-6">
-                  <a href="https://www.linkedin.com/in/jainireshj">
-                    <div className="icon-box">
-                      <i className="fab fa-linkedin-in"></i>
-                    </div>
-                    </a>
-                  </div>
-                 
-                  <div className="col-lg-4 col-md-4 col-sm-6">
-                    <a  href='https://www.topmate.io/jai_niresh_j' target='_blank'>
-                    <div className="icon-box">
-                      <i className="fab fa-codiepie"></i>
-                    </div>
-                    </a>
-                  </div>
-                </div>
-                {/* End Icon Boxes */}
-              </section>
+              <iframe src="https://topmate.io/embed/profile/jai_niresh_j?theme=D5534D" frameborder="0"
+                  btn-style='{"backgroundColor":"#000","color":"#fff","border":"1px solid #000"}'
+                  embed-version="v1"
+                  button-text="Looking to level up your bug bounty game ? Let's connect ?"
+                  position-right="30px"
+                  position-bottom="30px"
+                  custom-padding="0px"
+                  custom-font-size="16px"
+                  custom-font-weight="500"
+                  custom-width="200px"
+                  async=""
+                  defer=""></iframe>
+                </section>
               {/* End Profile Section */}
             </div>
           </div>
@@ -112,6 +81,21 @@ const AboutUs = () => {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         {/* Font Awesome Script */}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+        {/* <iframe
+        src="https://topmate-embed.s3.ap-south-1.amazonaws.com/v1/topmate-embed.js"
+        user-profile="https://topmate.io/embed/profile/jai_niresh_j?theme=D5534D"
+        btn-style='{"backgroundColor":"#000","color":"#fff","border":"1px solid #000"}'
+        embed-version="v1"
+        button-text="Looking to level up your bug bounty game ? Let's connect ?"
+        position-right="30px"
+        position-bottom="30px"
+        custom-padding="0px"
+        custom-font-size="16px"
+        custom-font-weight="500"
+        custom-width="200px"
+        async=""
+        defer=""
+      ></iframe> */}
     </div>
   );
 };

@@ -1,24 +1,25 @@
-const { getStateFromLocal } = require("../utils/stateLocalStorage");
+import { getStateFromLocal } from "../../utils/stateLocalStorage";
+
 
 const preLoadedState = getStateFromLocal();
 let emptyState = {
-  userId: '0',
+  userIds: '0',
   username : 'initial',
   email: '',
   authToken: '',
   error: true
 } ;
 
-const initialState = preLoadedState === undefined ? emptyState : preLoadedState;
+const initialState = preLoadedState?.userDetailsReducer === undefined ? emptyState : preLoadedState?.userDetailsReducer;
 
 
-function login(state = initialState, action) {
+function userDetailsReducer(state = initialState, action) {
     switch (action.type) {
       case 'USER_LOGIN_SUCCESS':
       case 'USER_REGISTER_SUCCESS':
         // console.log('From state : ' + JSON.stringify(action.payload))
         return {
-          ...state, userId: action.payload.userId, username: action.payload.username, eail: action.payload.email, authToken: action.payload.authToken, error:false
+          ...state, userId: action.payload.userId, username: action.payload.username, email: action.payload.email, authToken: action.payload.authToken, error:false
         }
       case 'UESR_LOGIN_FAILED':
       case 'USER_REGISTER_FAILED':
@@ -29,5 +30,4 @@ function login(state = initialState, action) {
         return initialState
     }
   }
-
-  module.exports = {login}
+export default userDetailsReducer;
