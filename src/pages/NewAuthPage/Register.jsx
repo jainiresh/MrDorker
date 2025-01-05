@@ -102,7 +102,7 @@ const Register = () => {
     <div
   style={{
     display: 'flex',
-    height: '100vh',
+    height: '94vh',
     width: '100vw',
     justifyContent: 'center',
     alignItems: 'center',
