@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { logout } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function Navbar({userDetails}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,61 +31,62 @@ function Navbar({userDetails}) {
 
         {/* Links for desktop */}
         <ul className="hidden md:flex space-x-8 mb-0">
-          {userDetails.email ? <li>
-            <a href="/dashboard" className="hover:text-gray-400 text-white text-xl transition no-underline">
-              Dashboard
-            </a>
-          </li> : 
-          <li>
-          <a href="/login" className="hover:text-gray-400 text-white text-xl transition no-underline">
-            Login
-          </a>
-        </li> 
+          {userDetails.email ? 
+            <li>
+              <Link to="/dashboard" className="hover:text-gray-400 text-white text-xl transition no-underline">
+                Dashboard
+              </Link>
+            </li> 
+            : 
+            <li>
+              <Link to="/login" className="hover:text-gray-400 text-white text-xl transition no-underline">
+                Login
+              </Link>
+            </li> 
           }
           <li>
-            <a href="#about" className="hover:text-gray-400 text-white text-xl transition no-underline">
+            <Link to="#about" className="hover:text-gray-400 text-white text-xl transition no-underline">
               About Us
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/request-a-feature" className="hover:text-gray-400 text-white text-xl transition no-underline">
+            <Link to="/request-a-feature" className="hover:text-gray-400 text-white text-xl transition no-underline">
               Request a Feature
-            </a>
+            </Link>
           </li>
           {userDetails.email ? (
             <>
-          <li>
-            <a href="/profile" className="hover:text-gray-400 text-white text-xl transition no-underline">
-              Account
-            </a>
-          </li>
-          <li>
-            <button className="hover:text-gray-400 text-white text-xl transition no-underline" onClick={() => handleLogout()}>
-              Logout
-            </button>
-          </li>
-         
-            <li className="flex items-center">
-            <img 
-              src={userDetails.photoUrl ? userDetails.photoUrl : '/profilePic.png'} 
-              alt="Profile pic" 
-              className="w-10 h-10 rounded-md mr-2" 
-            /> 
-          </li>
-          </>
+              <li>
+                <Link to="/profile" className="hover:text-gray-400 text-white text-xl transition no-underline">
+                  Account
+                </Link>
+              </li>
+              <li>
+                <button className="hover:text-gray-400 text-white text-xl transition no-underline" onClick={() => handleLogout()}>
+                  Logout
+                </button>
+              </li>
+              <li className="flex items-center">
+                <img 
+                  src={userDetails.photoUrl ? userDetails.photoUrl : '/profilePic.png'} 
+                  alt="Profile pic" 
+                  className="w-10 h-10 rounded-md mr-2" 
+                /> 
+              </li>
+            </>
           ): 
           <>
-          <li>
-            <a href="/contact" className="hover:text-gray-400 text-white text-xl transition no-underline">
-              Contact US
-            </a>
-          </li>
-          <li>
-          <button className="hover:text-gray-400 text-white text-xl transition no-underline" onClick={() => handleLogout()}>
-            Logout
-          </button>
-        </li></>
-          }
+            <li>
+              <Link to="/contact" className="hover:text-gray-400 text-white text-xl transition no-underline">
+                Contact US
+              </Link>
+            </li>
+            <li>
+              <button className="hover:text-gray-400 text-white text-xl transition no-underline" onClick={() => handleLogout()}>
+                Logout
+              </button>
+            </li>
+          </>}
         </ul>
 
         {/* Hamburger Menu for Mobile */}
@@ -102,40 +104,40 @@ function Navbar({userDetails}) {
       {isMenuOpen && (
         <ul className="md:hidden bg-black text-white space-y-4 px-6 py-4">
           <li>
-            <a
-              href="#home"
+            <Link
+              to="#home"
               className="block hover:text-gray-400 transition"
               onClick={() => setIsMenuOpen(false)}
             >
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#features"
+            <Link
+              to="#features"
               className="block hover:text-gray-400 transition"
               onClick={() => setIsMenuOpen(false)}
             >
               Features
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#about"
+            <Link
+              to="#about"
               className="block hover:text-gray-400 transition"
               onClick={() => setIsMenuOpen(false)}
             >
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#contact"
+            <Link
+              to="#contact"
               className="block hover:text-gray-400 transition"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       )}
