@@ -9,12 +9,13 @@ import {
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCgq9_xbC2zMLV_gIrGlBnpryRN_toiHW4",
-  authDomain: "login-signup-auth-ks.firebaseapp.com",
-  projectId: "login-signup-auth-ks",
-  storageBucket: "login-signup-auth-ks.appspot.com",
-  messagingSenderId: "153852426357",
-  appId: "1:153852426357:web:0dace21431a9f096a2203c",
+  apiKey: "AIzaSyATqCxspM0tzlKGpMVuR6g3xUwrCXH-pQQ",
+  authDomain: "mrdorker-2eea9.firebaseapp.com",
+  projectId: "mrdorker-2eea9",
+  storageBucket: "mrdorker-2eea9.firebasestorage.app",
+  messagingSenderId: "121332264390",
+  appId: "1:121332264390:web:9c98d307669820ec0016c7",
+  measurementId: "G-73S6L7DGEN"
 };
 
 const app = initializeApp(firebaseConfig);

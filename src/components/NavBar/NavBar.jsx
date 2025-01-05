@@ -7,7 +7,7 @@ function Navbar({userDetails}) {
   
   useEffect(() => {
     
-  }, [userDetails.displayName])
+  }, [userDetails.email])
   
 
   const toggleMenu = () => {
@@ -30,7 +30,7 @@ function Navbar({userDetails}) {
 
         {/* Links for desktop */}
         <ul className="hidden md:flex space-x-8 mb-0">
-          {userDetails.displayName ? <li>
+          {userDetails.email ? <li>
             <a href="/dashboard" className="hover:text-gray-400 text-white text-xl transition no-underline">
               Dashboard
             </a>
@@ -51,7 +51,7 @@ function Navbar({userDetails}) {
               Request a Feature
             </a>
           </li>
-          {userDetails.displayName ? (
+          {userDetails.email ? (
             <>
           <li>
             <a href="/profile" className="hover:text-gray-400 text-white text-xl transition no-underline">
@@ -66,7 +66,7 @@ function Navbar({userDetails}) {
          
             <li className="flex items-center">
             <img 
-              src={userDetails.photoUrl} 
+              src={userDetails.photoUrl ? userDetails.photoUrl : '/profilePic.png'} 
               alt="Profile pic" 
               className="w-10 h-10 rounded-md mr-2" 
             /> 
