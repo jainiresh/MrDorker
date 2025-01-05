@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LeftPane from '../../../components/LeftPane/LeftPane';
 import DorkList from '../../../components/DorkList/DorkList';
 import { ToastContainer, toast } from 'react-toastify';
-import { GITHUB_DORKS_JSON, GOOGLE_DORKS_JSON } from '../../../constants/constants';
+import { GITHUB_DORKS_JSON } from '../../../constants/constants';
 import DashboardLeftPane from '../../../components/LeftPane/DashboardLeftPane/DashboardLeftPane';
 
 const GithubDork = () => {

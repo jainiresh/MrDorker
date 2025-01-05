@@ -59,6 +59,7 @@ exports.GOOGLE_DORKS_JSON = [
     { label: 'Videos', value: 'Videos' },
     { label: 'Code Snippet', value: 'Code Snippet' }, 
 ];
+
 exports.AI_REPORT_VULNS = [
   { label: "Blind XSS", value: "Blind XSS" },
   { label: "Stored XSS", value: "Stored XSS" },
@@ -96,3 +97,107 @@ exports.AI_REPORT_VULNS = [
   { label: "Cryptographic Failures", value: "Cryptographic Failures" },
   { label: "Injection Flaws", value: "Injection Flaws" }, 
 ];
+
+
+exports.TERMS_AND_CONDITIONS = `
+<p>
+  <strong>Effective Date:</strong> [January 7th, 2025]
+  <br><br>
+  Welcome to <strong>Mr.Dorker</strong> (“Application”). By accessing or using the Application, you agree to these <strong>Terms and Conditions</strong> (“Terms”). If you do not agree, you must discontinue use immediately.
+  <br><br>
+  <strong>1. Definitions</strong>
+  <ul>
+    <li><strong>Application:</strong> Refers to the bug bounty hunting tool, including all its features and services.</li>
+    <li><strong>Owner:</strong> The creator and administrator of the Application, <strong>JAI NIRESH J</strong>.</li>
+    <li><strong>User:</strong> Any individual or entity accessing or using the Application.</li>
+    <li><strong>Content:</strong> Includes payloads, dorks, scripts, reports, or any other material provided through the Application.</li>
+  </ul>
+  <br>
+  <strong>2. Intended Use</strong>
+  <p>The Application is designed as a tool to assist users in ethical bug bounty hunting. By using the Application, you agree:</p>
+  <ul>
+    <li>To comply with all applicable laws and regulations.</li>
+    <li>To use the Application only for lawful purposes, including authorized penetration testing and vulnerability hunting.</li>
+  </ul>
+  <br>
+  <strong>3. Prohibited Activities</strong>
+  <p>You are strictly prohibited from using the Application for:</p>
+  <ul>
+    <li>Any illegal activities, including unauthorized access to systems or networks.</li>
+    <li>Actions that violate the <strong>Computer Fraud and Abuse Act (CFAA)</strong>, <strong>General Data Protection Regulation (GDPR)</strong>, or other applicable laws.</li>
+    <li>Distributing malicious payloads or conducting activities outside authorized bug bounty programs.</li>
+  </ul>
+  <br>
+  <strong>4. Limitation of Liability</strong>
+  <ul>
+    <li><strong>No Warranty:</strong> The Application is provided “as is” and “as available” without warranties of any kind, either express or implied.</li>
+    <li><strong>Owner’s Liability:</strong> The Owner is not liable for any damages, legal consequences, or penalties arising from:
+      <ul>
+        <li>Unauthorized or illegal use of the Application.</li>
+        <li>User actions performed using the Application's tools, content, or features.</li>
+        <li>Failure to achieve desired results in any bug bounty program.</li>
+      </ul>
+    </li>
+  </ul>
+  <br>
+  <strong>5. User Responsibility</strong>
+  <p>Users agree to bear full responsibility for their actions while using the Application. The Owner is not liable for misuse or misinterpretation of the Application’s tools or data.</p>
+  <br>
+  <strong>6. Termination</strong>
+  <p>The Owner reserves the right to suspend or terminate access to the Application at any time, especially in cases of misuse or violation of these Terms.</p>
+  <br>
+  <strong>7. Indemnification</strong>
+  <p>Users agree to indemnify and hold the Owner harmless from any claims, damages, or liabilities arising from:</p>
+  <ul>
+    <li>Misuse of the Application.</li>
+    <li>Violations of laws or regulations.</li>
+    <li>Third-party claims related to the User’s activities.</li>
+  </ul>
+  <br>
+  <strong>8. Governing Law</strong>
+  <p>These Terms are governed by the laws of <strong>INDIA/TAMIL NADU</strong>. Any disputes arising from these Terms will be resolved exclusively in <strong>INDIAN Jursidiction</strong>.</p>
+</p>
+`;
+
+exports.PRIVACY_POLICY = `
+<p>
+  <strong>Effective Date:</strong> January 7, 2025
+  <br><br>
+  Welcome to <strong>Mr.Dorker</strong> (“Application”). This Privacy Policy explains how we collect, use, and disclose your personal information when you use the Application.
+  <br><br>
+  <strong>1. Information Collection</strong>
+  <ul>
+    <li><strong>Personal Information:</strong> We may collect personal information such as your name, email address, and other details that you provide when using the Application.</li>
+    <li><strong>Usage Data:</strong> We collect information about your usage of the Application, such as IP addresses, browser types, and interaction with features.</li>
+  </ul>
+  <br>
+  <strong>2. Use of Information</strong>
+  <ul>
+    <li>We use your personal information to provide, improve, and personalize the Application.</li>
+    <li>We may use your data to communicate with you about updates, features, and promotions related to the Application.</li>
+    <li>We do not share or sell your personal information to third parties for marketing purposes.</li>
+  </ul>
+  <br>
+  <strong>3. Information Sharing</strong>
+  <p>We may share your information in the following cases:</p>
+  <ul>
+    <li><strong>Legal Compliance:</strong> We may disclose your information to comply with applicable laws or regulations.</li>
+    <li><strong>Service Providers:</strong> We may share your information with third-party service providers who assist us in providing the Application.</li>
+  </ul>
+  <br>
+  <strong>4. Data Security</strong>
+  <p>We take reasonable measures to protect your personal information from unauthorized access, alteration, or destruction. However, no method of transmission over the Internet or method of electronic storage is 100% secure.</p>
+  <br>
+  <strong>5. User Rights</strong>
+  <ul>
+    <li>You may access, update, or delete your personal information at any time by contacting us.</li>
+    <li>You have the right to opt out of communications or withdraw consent for the processing of your data.</li>
+  </ul>
+  <br>
+  <strong>6. Changes to this Privacy Policy</strong>
+  <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+  <br>
+  <strong>7. Contact Us</strong>
+  <p>If you have any questions about this Privacy Policy or how we handle your data, please contact us at <strong>JAI NIRESH J</strong>, [nireshpandian191@gmail.com].</p>
+</p>
+`;

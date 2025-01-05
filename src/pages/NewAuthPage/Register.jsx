@@ -7,12 +7,39 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { createUserWithEmailAndPassword, updateCurrentUser, updateProfile } from "firebase/auth";
+import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from "../../constants/constants.js";
+
+const Modal = ({ isOpen, onClose, title, content }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-[90%] max-w-3xl">
+        <h2 className="text-2xl text-white font-bold mb-4">{title}</h2>
+        <div className="text-gray-300 max-h-[60vh] overflow-y-auto">
+          {content}
+        </div>
+        <div className="mt-4 text-right">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-purple-500 hover:bg-purple-700 text-white rounded transition duration-300"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [user, loading, error] = useAuthState(auth);
+  const [modalContent, setModalContent] = useState("");
+  const [modalTitle, setModalTitle] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -54,6 +81,22 @@ const Register = () => {
       navigate("/");
     }
   }, [user, loading, navigate]);
+
+  const openModal = (title, content) => {
+    console.log('Clicked')
+    setModalTitle(title);
+    setModalContent(content);
+    setIsModalOpen(true);
+  };
+
+  const termsAndConditions = (
+    <div dangerouslySetInnerHTML={{ __html: TERMS_AND_CONDITIONS }} />
+  );
+
+  const privacyPolicy = (
+    <div dangerouslySetInnerHTML={{__html: PRIVACY_POLICY}} />
+  );
+
 
   return (
     <div
@@ -130,11 +173,12 @@ const Register = () => {
           className="ml-4 text-sm font-medium text-gray-300"
         >
           I agree to the{" "}
-          <span className="text-purple-400 hover:underline">
+          <span className="text-purple-400 hover:underline" onClick={() => openModal("Terms and Conditions", termsAndConditions)}
+                            >
             terms & conditions
           </span>{" "}
           and{" "}
-          <span className="text-purple-400 hover:underline">
+          <span className="text-purple-400 hover:underline" onClick={() => openModal("Privacy policy", privacyPolicy)}>
             privacy policy
           </span>
         </label>
@@ -183,6 +227,12 @@ const Register = () => {
       </div>
     </div>
   </div>
+  <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={modalTitle}
+        content={modalContent}
+      />
 </div>
 
   );
