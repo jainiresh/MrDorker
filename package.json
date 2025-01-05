@@ -30,8 +30,8 @@
   },
   "scripts": {
 
-    "prebuild": "echo '{\"rewrites\": [{\"source\": \"/:path*\", \"destination\": \"/index.html\"}]}' > build/static.json",
-    "start": "react-scripts start",
+    "prebuild": "mkdir -p build && echo '{\"rewrites\": [{\"source\": \"/:path*\", \"destination\": \"/index.html\"}]}' > build/static.json",
+  "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
