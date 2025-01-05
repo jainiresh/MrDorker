@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { store } from '../redux/store'
+// import { store } from '../redux/store'
 import { useDispatch, useSelector } from 'react-redux';
 import constants from '../constants/constants'
 import { Link, useNavigate } from 'react-router-dom';
@@ -87,7 +87,7 @@ const Form = ({
 
 
   const handleLoginOrRegistration = (e) => {
-    console.info("From Form Before login: " + jsonFormat(store.getState()));
+    // console.info("From Form Before login: " + jsonFormat(store.getState()));
     e.preventDefault();
     dispatch({ type: isRegistrationForm ? 'USER_REGISTER_REQUEST' : 'USER_LOGIN_REQUEST', payload: loginData })
   }

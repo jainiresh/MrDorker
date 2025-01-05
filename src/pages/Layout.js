@@ -9,24 +9,30 @@ import Profile from './NewAuthPage/Profile';
 import Dashboard from './Dashboard';
 import GoogleDork from './Dorking/Google/GoogleDork';
 import GithubDork from './Dorking/Github/GithubDork';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import HomePage from './NewAuthPage/HomePage';
 import ShodanDork from './Dorking/Shodan/ShodanDork';
 import AiGenerator from './AIReportGenerator/AiGenerator';
+import Form from '../components/Form';
+import AboutUs from '../components/About-us';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Layout = () => {
 
   const {isAuthenticated} = useSelector(state => state.authReducer)
-  console.log('isAuth', isAuthenticated);
-
+  const userDetails = useSelector(state => state.userDetailsReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({type:'LOAD_USER_STATE_FROM_LOCAL'})
+  }, [dispatch])
   
-  // const [user, loading, error] = useAuthState(auth);
-  const navigate = useNavigate();
+  const toaster = useSelector(state => state.toastReducer);
 
-  useEffect(()=>{
-    if(!isAuthenticated)
-      navigate('/login')
-  },[])
+  if(toaster.message){
+    toaster.error ? toast.error(toaster.message):
+    toast.success(toaster.message);
+  }
+
 
   const PrivateRoutes = () => {
     console.log('user ' , isAuthenticated)
@@ -34,14 +40,16 @@ const Layout = () => {
   }
   return (
    <>
-       <Navbar />
+       <Navbar userDetails={userDetails}/>
     <div className="App">
       <div className="max-w-[100%] md:max-w-[100%] mx-auto">
         <Routes>
           <Route element={<Login/>} path="/login"/>
           <Route element={<Register/>} path="/register"/>
-          <Route element={<HomePage />} path="/"/>
+          <Route element={<Form />} path='/request-a-feature'/>
+          <Route element={<AboutUs />} path='/about-us'/>
           <Route element={<PrivateRoutes/>} >
+          <Route element={<Dashboard />} path="/"/>
           <Route element={<Profile/>} path="/profile" />
           <Route element={<Dashboard />} path='/dashboard' />
           <Route element={<GoogleDork />} path='/dorks/google'/>
@@ -52,6 +60,7 @@ const Layout = () => {
           
         </Routes>
       </div>
+      <ToastContainer />
     </div>
     {/* <div className='App'>
     <Layout/>

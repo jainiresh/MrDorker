@@ -17,6 +17,7 @@ const Login = () => {
   const [Data, setData] = useState(initialState);
   const { password, email } = Data;
   const [user, loading, error] = useAuthState(auth);
+  console.log('New auth ', user)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -33,13 +34,7 @@ const Login = () => {
         .then((userCredentials) => {
           console.log(userCredentials);
           const {email, uid, accessToken, error, displayName} = userCredentials.user
-          dispatch({type:'USER_LOGIN_SUCCESS', payload: {
-            userId: uid,
-            email: email,
-            username: displayName,
-            authToken: accessToken,
-            error: error
-          }})
+         
         })
         .catch((err) => {
           if (err.code === "auth/invalid-email") {
@@ -73,8 +68,9 @@ const Login = () => {
   };
 
   const signInWithGoogleHandler = async () => {
-    await signInWithGoogle();
-    dispatch({type:'IS_LOGGED_IN'});
+    const metadataResponse = await signInWithGoogle();
+    dispatch({type:'USER_LOGIN_REQUEST_V2', payload:metadataResponse});
+    
   }
 
   return (

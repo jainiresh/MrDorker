@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { logout } from '../../firebase';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-function Navbar() {
+function Navbar({userDetails}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  useEffect(() => {
+    
+  }, [userDetails.displayName])
+  
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -12,7 +17,7 @@ function Navbar() {
   const dispatch= useDispatch();
   const handleLogout = () => {
     logout();
-    dispatch({type:'IS_LOGGED_OUT'})
+    dispatch({type:'USER_LOGOUT_SAGA'})
   }
 
   return (
@@ -25,24 +30,32 @@ function Navbar() {
 
         {/* Links for desktop */}
         <ul className="hidden md:flex space-x-8 mb-0">
-          <li>
+          {userDetails.displayName ? <li>
             <a href="/dashboard" className="hover:text-gray-400 text-white text-xl transition no-underline">
               Dashboard
             </a>
-          </li>
+          </li> : 
           <li>
-            <a href="#features" className="hover:text-gray-400 text-white text-xl transition no-underline">
-              Features
-            </a>
-          </li>
+          <a href="/login" className="hover:text-gray-400 text-white text-xl transition no-underline">
+            Login
+          </a>
+        </li> 
+          }
           <li>
             <a href="#about" className="hover:text-gray-400 text-white text-xl transition no-underline">
               About Us
             </a>
           </li>
           <li>
-            <a href="#contact" className="hover:text-gray-400 text-white text-xl transition no-underline">
+            <a href="/request-a-feature" className="hover:text-gray-400 text-white text-xl transition no-underline">
               Request a Feature
+            </a>
+          </li>
+          {userDetails.displayName ? (
+            <>
+          <li>
+            <a href="/profile" className="hover:text-gray-400 text-white text-xl transition no-underline">
+              Account
             </a>
           </li>
           <li>
@@ -50,6 +63,28 @@ function Navbar() {
               Logout
             </button>
           </li>
+         
+            <li className="flex items-center">
+            <img 
+              src={userDetails.photoUrl} 
+              alt="Profile pic" 
+              className="w-10 h-10 rounded-md mr-2" 
+            /> 
+          </li>
+          </>
+          ): 
+          <>
+          <li>
+            <a href="/contact" className="hover:text-gray-400 text-white text-xl transition no-underline">
+              Contact US
+            </a>
+          </li>
+          <li>
+          <button className="hover:text-gray-400 text-white text-xl transition no-underline" onClick={() => handleLogout()}>
+            Logout
+          </button>
+        </li></>
+          }
         </ul>
 
         {/* Hamburger Menu for Mobile */}

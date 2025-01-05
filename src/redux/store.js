@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga';
-import {mySaga} from './saga'
+import {mySaga} from './saga/saga'
 import { saveStateToLocal } from '../utils/stateLocalStorage';
 import rootReducer from './reducers';
 
@@ -16,7 +16,7 @@ const store = configureStore({
 
 store.subscribe(()=>{
     saveStateToLocal(store.getState())
-    console.log('Subscribed : ', store.getState)
+    console.log('Subscribed : ', store.getState())
 })
 sagaMiddleware.run(mySaga)
 
