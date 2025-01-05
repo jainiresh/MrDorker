@@ -29,6 +29,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+
+    "prebuild": "echo '{\"rewrites\": [{\"source\": \"/:path*\", \"destination\": \"/index.html\"}]}' > build/static.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
