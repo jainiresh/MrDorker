@@ -1,7 +1,5 @@
 import { getStateFromLocal } from "../../utils/stateLocalStorage";
-import store from "../store";
 
-const preLoadedState = getStateFromLocal();
 let emptyState = {
   userId: '0',
   displayName : undefined,
@@ -12,7 +10,6 @@ let emptyState = {
 
 
 function userDetailsReducer(state = emptyState, action) {
-  console.log('Here inside reducer ', state)
     switch (action.type) {
       case 'LOAD_USER_STATE_FROM_LOCAL': {
         const loadedState = getStateFromLocal();
@@ -20,11 +17,13 @@ function userDetailsReducer(state = emptyState, action) {
       }
       case 'USER_METADATA_POPULATE':{
         const {email, accessToken, userId, displayName, photoUrl} = action.payload;
+        console.log('State is ', state)
         return {...state, email, accessToken, userId, displayName, photoUrl};
       }
       case 'CLEAR_USER_METADATA':
+        return emptyState;
       default:
-        return emptyState
+        return state;
     }
   }
 export default userDetailsReducer;

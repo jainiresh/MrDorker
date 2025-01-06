@@ -5,17 +5,16 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, } from "react-redux";
 
 const initialState = {
   email: "",
   password: "",
 };
 
-const Login = () => {
+const Login = ({isAuthenticated}) => {
   const [Data, setData] = useState(initialState);
   const { password, email } = Data;
-  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -52,8 +51,9 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (user) navigate("/");
-  }, [user, navigate]);
+    console.log('isAuth ', isAuthenticated)
+    if (isAuthenticated) navigate("/");
+  }, [isAuthenticated]);
 
   const handleChange = (e) => {
     setData({ ...Data, [e.target.name]: e.target.value });

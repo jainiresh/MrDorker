@@ -1,16 +1,16 @@
 const initialState = {
     message : undefined, 
-    error: false
+    error: undefined
 }
 
-const toastReducer = (state = initialState, action) => {
+const ToastReducer = (state = initialState, action) => {
     switch(action.type){
         case 'TOASTER_ON':
-            return {...state, ...action.payload};
-        case 'TOSTER_OFF':
+            return {...action.payload};
+        case 'TOASTER_OFF':
         default:
             return initialState;
     }
 }
 
-export default toastReducer
+export default ToastReducer

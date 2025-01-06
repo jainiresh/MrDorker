@@ -6,7 +6,7 @@ import { auth, signInWithGoogle, signInWithGithub } from "../../firebase.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
-import { createUserWithEmailAndPassword, updateCurrentUser, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from "../../constants/constants.js";
 
 const Modal = ({ isOpen, onClose, title, content }) => {
@@ -32,11 +32,10 @@ const Modal = ({ isOpen, onClose, title, content }) => {
   );
 };
 
-const Register = () => {
+const Register = ({isAuthenticated}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
-  const [user, loading, error] = useAuthState(auth);
   const [modalContent, setModalContent] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,8 +62,10 @@ const Register = () => {
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(user, { displayName: fullName }); 
+      sendEmailVerification(user);
       user.displayName = fullName
-      dispatch({type:'USER_LOGIN_REQUEST_V2', payload: user}); 
+      dispatch({type:'USER_REGISTER_REQUEST_V2', payload: user}); 
+      navigate('/login')
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
         toast.error("Email already registered, login to continue");
@@ -76,11 +77,10 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (loading) return;
-    if (user) {
+    if (isAuthenticated) {
       navigate("/");
     }
-  }, [user, loading, navigate]);
+  }, [isAuthenticated]);
 
   const openModal = (title, content) => {
     console.log('Clicked')
@@ -124,7 +124,6 @@ const Register = () => {
     <p className="text-gray-400 leading-5 text-center mb-4">
       Fill in the details to register
     </p>
-    {error && <div className="text-center text-red-500">{error.message}</div>}
     <form
       onSubmit={handlesubmit}
       className="flex flex-col justify-center items-center"

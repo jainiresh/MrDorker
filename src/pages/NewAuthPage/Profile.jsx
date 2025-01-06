@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-const Profile = () => {
-  const userDetails = useSelector(state => state.userDetailsReducer);
+const Profile = ({userDetails}) => {
+  
 
   return (
     <div className="flex flex-col items-center justify-center h-[94vh] bg-gradient-to-br from-gray-900 to-black text-white"> 
