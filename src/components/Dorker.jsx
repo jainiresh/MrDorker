@@ -13,7 +13,6 @@ const Dorker = () => {
   useEffect(()=>{
     let searchParams = new URL(window.location.href).search;
     searchParams =  new URLSearchParams(searchParams);
-    console.log(searchParams)
     // if(!searchParams.has('email') || !searchParams.has('id'))
     //   navigate('/login')
   },

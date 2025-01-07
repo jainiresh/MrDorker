@@ -7,7 +7,6 @@ import DashboardLeftPane from '../../../components/LeftPane/DashboardLeftPane/Da
 import { cleanText } from '../../../utils/jsonUtils';
 
 const GithubDork = () => {
-  console.log('Github dork')
   const [selectedTarget, setSelectedTarget] = useState('github');
   const [dorks, setDorks] = useState([]);
   const [website, setWebsite] = useState('');
@@ -39,14 +38,11 @@ const GithubDork = () => {
       const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/gitDork/checkOrg?organization=${cleanText(organization)}`, {
       });
       
-      console.log('Response ', response)
       // Check for successful response (status code in the 200s)
       if (response.status == 200) {
         toast.success("The organization exists");
-        console.log('Organization likely exists on GitHub!'); // Adjust message as needed
       } else {
         toast.error("The organization Does not exists");
-        console.log(`Error: Status code ${response.status}`);
       }
     } catch (error) {
       console.error('Error fetching organization:', error);

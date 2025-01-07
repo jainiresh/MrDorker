@@ -8,8 +8,6 @@ export const newUserSubscriptionApi = async (data) => {
         }
         const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/newUser`, {email: data.email}, {headers});
 
-        // Returning the response if successful
-        console.log('Response ', response.data)
         return response.data.success;
     } catch (error) {
         console.error("Error generating report:", error);

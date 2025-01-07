@@ -45,7 +45,7 @@ const GoogleDork = () => {
       {/* Right Main Content Area */}
       <div id='rightContainer' className="w-[50vw] bg-gray-700 flex-1 p-6 overflow-y-hidden h-94vh flex-grow">
         <h2 className="text-white text-2xl font-semibold mb-2">
-          Enter your target (sub)domain here :
+          Enter your target (sub) domain here :
         </h2>
         <input
           type="text"

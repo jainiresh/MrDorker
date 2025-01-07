@@ -51,7 +51,6 @@ const Login = ({isAuthenticated}) => {
   };
 
   useEffect(() => {
-    console.log('isAuth ', isAuthenticated)
     if (isAuthenticated) navigate("/");
   }, [isAuthenticated]);
 
@@ -60,8 +59,11 @@ const Login = ({isAuthenticated}) => {
   };
 
   const signInWithGoogleHandler = async () => {
-    const metadataResponse = await signInWithGoogle();
-    dispatch({ type: "USER_LOGIN_REQUEST_V2", payload: metadataResponse });
+    const {user:metadataResponse, isNewUser} = await signInWithGoogle();
+    if(isNewUser)
+      dispatch({ type: "USER_GOOGLE_REGISTER_SAGA", payload: metadataResponse });
+    else
+      dispatch({ type: "USER_LOGIN_REQUEST_V2", payload: metadataResponse });
   };
 
   return (

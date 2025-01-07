@@ -5,8 +5,8 @@ import {
   getAuth,
   signInWithPopup,
   signOut,
-  RecaptchaVerifier, 
-  signInWithPhoneNumber 
+  getAdditionalUserInfo,
+  getRedirectResult
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
@@ -29,9 +29,8 @@ const signInWithGoogle = async () => {
   
   try {
     const res = await signInWithPopup(auth, googleProvider);
-    const user = res.user;
-    console.log('Meta data ', res)
-    return user;
+    const {isNewUser} = getAdditionalUserInfo(res);
+    return {user:res.user, isNewUser};
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -43,7 +42,6 @@ const signInWithGithub = async () => {
   try {
     const res = await signInWithPopup(auth, githubProvider);
     const user = res.user;
-    console.log(user);
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -51,7 +49,6 @@ const signInWithGithub = async () => {
 };
 
 const logout = () => {
-  console.log('Here', auth);
   signOut(auth);
 };
 

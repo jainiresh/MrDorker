@@ -55,7 +55,6 @@ const appData = [
 ];
 
 const Dashboard = () => {
-  console.log('Called home page')
   const dispatch = useDispatch();
   const handleLogout = () => {
     logout();

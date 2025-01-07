@@ -71,7 +71,6 @@ const Register = ({ isAuthenticated }) => {
       if (err.code === "auth/email-already-in-use") {
         toast.error("Email already registered, login to continue");
       } else {
-        console.log('Errored ', err)
         toast.error("Error occured, please try again");
       }
     }
@@ -84,14 +83,13 @@ const Register = ({ isAuthenticated }) => {
   }, [isAuthenticated]);
 
   const openModal = (title, content) => {
-    console.log('Clicked')
     setModalTitle(title);
     setModalContent(content);
     setIsModalOpen(true);
   };
 
   const signInWithGoogleHandler = async () => {
-    const metadataResponse = await signInWithGoogle();
+    const {user:metadataResponse} = await signInWithGoogle();
     dispatch({ type: "USER_GOOGLE_REGISTER_SAGA", payload: metadataResponse });
   };
 

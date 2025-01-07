@@ -20,15 +20,25 @@ export function* loginV2User(action){
     yield put({type:'TOASTER_ON', payload:{error:false, message:'Successfully Logged in !'}});
 }
 
-export function* registerV2User(){
+export function* registerV2User(action){
     yield put({type:'TOASTER_ON', payload:{message:'Registered User successfully and Verification Email Sent !', error:false}});
+    const details = action.payload;
+
+    try {
+      yield call(newUserSubscriptionApi, { email: details.email, accessToken: details.accessToken });
+    } catch (error) {
+      console.error('Error during user subscription:', error);
+      // Handle the error appropriately (e.g., log to a service, display a user-friendly error message)
+    }
+  
+    yield put({ type: 'NEW_SUBSCRIPTION_FREE', payload: details.email });
+
 }
 
 export function* registerViaGoogle(action) {
     yield put({ type: 'IS_LOGGED_IN' });
   
     const details = action.payload;
-    console.log('Here 1');
   
     try {
       yield call(newUserSubscriptionApi, { email: details.email, accessToken: details.accessToken });

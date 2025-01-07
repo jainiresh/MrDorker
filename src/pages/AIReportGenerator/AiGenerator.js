@@ -50,7 +50,6 @@ const AiGenerator = () => {
       accessToken
     };
 
-    console.log('Payload ', payload)
 
     setIsLoading(true);
     dispatch({

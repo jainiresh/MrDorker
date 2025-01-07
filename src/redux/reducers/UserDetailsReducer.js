@@ -18,7 +18,6 @@ function userDetailsReducer(state = emptyState, action) {
       }
       case 'USER_METADATA_POPULATE':{
         const {email, accessToken, userId, displayName, photoUrl, subscriptionPlan} = action.payload;
-        console.log('State is ', state)
         return {...state, email, accessToken, userId, displayName, photoUrl, subscriptionPlan};
       }
       case 'CLEAR_USER_METADATA':

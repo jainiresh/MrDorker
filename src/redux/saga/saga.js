@@ -16,7 +16,6 @@ async function loginBackendRequest (loginPayload){
         return {userId: response.data.userId, username : response.data.username, email: response.data.email, authToken: response.data.authToken}
     }
     catch(e){
-            console.log("Error logging in!")
             return {error: true, userData: '', authToken: ''};
     }
     
@@ -25,27 +24,20 @@ async function loginBackendRequest (loginPayload){
 async function registrationBackendRequest(registerPayload){
     try {
         const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/authService/register", registerPayload)
-        // console.log("Register response " + JSON.stringify(response));
         if(!response.data || !(response.data.authToken)){
             return {error: true, userData: '', authToken: ''};
         }
         return {userId: response.data.userId, username : response.data.username, email: response.data.email, authToken: response.data.authToken}
     } catch (error) {
-        console.log('Error registering the user !')
         return {error: true, userData: '', authToken: ''};
     }
 }
 
 function* loginUser (action){
-    console.log('Dont see this')
     try {
-        // console.log(
-        //     "Pre login call : " + JSON.stringify(action.payload)
-        // )
+       
         const loginResponse = yield call(loginBackendRequest, action.payload)
-        // console.log(
-        //     "Post login call" + JSON.stringify(loginResponse)
-        // )
+      
         if(!loginResponse.error){
         yield put({type: 'USER_LOGIN_SUCCESS', payload: loginResponse})
 }
