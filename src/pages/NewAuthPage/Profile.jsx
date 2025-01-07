@@ -23,7 +23,7 @@ const Profile = ({userDetails}) => {
           </div>
           <div className="flex justify-between items-center">
             <span className="text-lg font-semibold text-gray-300">Plan Type:</span>
-            <span className="text-blue-400 text-lg">Free</span> 
+            <span className="text-blue-400 text-lg">{userDetails.subscriptionPlan}</span> 
           </div>
         </div>
       </div>

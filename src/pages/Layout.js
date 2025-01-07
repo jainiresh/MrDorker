@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {BrowserRouter as Router, Route, Routes, BrowserRouter, Outlet, Navigate, useNavigate} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes, BrowserRouter, Outlet, Navigate, useNavigate, useLocation} from 'react-router-dom'
 
 
 import Navbar from '../components/NavBar/NavBar';
@@ -17,12 +17,27 @@ import Form from '../components/Form';
 import AboutUs from '../components/About-us';
 import { ToastContainer, toast } from 'react-toastify';
 import LoaderScreen from './LoaderScreen';
+import Pricing from './Payment/Pricing';
+import DevCycleProvider from '@devcycle/openfeature-web-provider';
+import { OpenFeature, useBooleanFlagValue } from '@openfeature/react-sdk';
+
+const user = { user_id: 'user_id' }; 
+const devcycleProvider = new DevCycleProvider(process.env.REACT_APP_DEVCYCLE_SDK_CLIENT_KEY, {});
+async function setupOpenFeature() {
+  await OpenFeature.setContext(user);
+  await OpenFeature.setProviderAndWait(devcycleProvider);
+}
+setupOpenFeature();
 
 const Layout = () => {
 
   const {isAuthenticated} = useSelector(state => state.authReducer)
+  const {subscriptionPlan} = useSelector(state => state.SubscriptionReducer);
   const userDetails = useSelector(state => state.userDetailsReducer);
   const loaderDetails = useSelector(state => state.loaderStateReducer)
+  const isSubscriptionModelOn = useBooleanFlagValue('subscription-model', false);
+
+  console.log('Dev feature ', isSubscriptionModelOn)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({type:'LOAD_USER_STATE_FROM_LOCAL'})
@@ -33,7 +48,6 @@ const Layout = () => {
 
   useEffect(() => {
     if(toaster.message){
-      console.log('hERE IN USEEFF')
       toaster.error ? toast.error(toaster.message, {position:toast.POSITION.BOTTOM_CENTER}):
       toast.success(toaster.message, {position:toast.POSITION.BOTTOM_CENTER});
       dispatch({type:'TOASTER_OFF'});
@@ -48,8 +62,8 @@ const Layout = () => {
 
 
   const PrivateRoutes = () => {
-    console.log('user ' , isAuthenticated)
-    return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
+    const location = useLocation();
+    return isAuthenticated ? isSubscriptionModelOn ? (subscriptionPlan != "FREE" || (location.pathname == '/profile') ? <Outlet /> : <Pricing />) : <Outlet />: <Navigate to={'/login'} />
   }
   return (
    <>
@@ -61,14 +75,18 @@ const Layout = () => {
           <Route element={<Register isAuthenticated={isAuthenticated}/>} path="/register"/>
           <Route element={<Form />} path='/request-a-feature'/>
           <Route element={<AboutUs />} path='/about-us'/>
+
+          //Private Routes
           <Route element={<PrivateRoutes/>} >
-          <Route element={<Dashboard />} path="/"/>
+
           <Route element={<Profile userDetails={userDetails}/>} path="/profile" />
-          <Route element={<Dashboard />} path='/dashboard' />
-          <Route element={<GoogleDork />} path='/dorks/google'/>
-          <Route element={<GithubDork />} path='/dorks/github'/>
-          <Route element={<ShodanDork />} path='/dorks/shodan'/>
-          <Route element={<AiGenerator />} path='/ai-report'/>
+            <Route element={<Pricing />} path="/complete-onboarding"/>
+            <Route element={<Dashboard />} path="/"/>
+            <Route element={<Dashboard />} path='/dashboard' />
+            <Route element={<GoogleDork />} path='/dorks/google'/>
+            <Route element={<GithubDork />} path='/dorks/github'/>
+            <Route element={<ShodanDork />} path='/dorks/shodan'/>
+            <Route element={<AiGenerator />} path='/ai-report'/>
             </Route>
           
         </Routes>

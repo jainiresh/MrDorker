@@ -1,7 +1,8 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import axios from 'axios';
-import { loginV2User, registerV2User } from './UserMetaDataSaga';
+import { loginV2User, registerV2User, registerViaGoogle } from './UserMetaDataSaga';
 import { logoutV2User } from './UserAuthenticationSaga';
+import { generateReport } from './ReportGeneratorSaga';
 
 let userId = 0;
 
@@ -81,6 +82,7 @@ export function* mySaga(){
     yield takeEvery('USER_REGISTER_REQUEST', registerUser)
     yield takeEvery('USER_LOGIN_REQUEST_V2', loginV2User);
     yield takeEvery('USER_REGISTER_REQUEST_V2', registerV2User);
+    yield takeEvery('USER_GOOGLE_REGISTER_SAGA', registerViaGoogle);
     yield takeEvery('USER_LOGOUT_SAGA', logoutV2User);
-    
+    yield takeLatest('GENERATE_REPORT_SAGA', generateReport)
 }

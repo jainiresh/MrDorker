@@ -5,7 +5,8 @@ let emptyState = {
   displayName : undefined,
   email: '',
   photoUrl: '',
-  accessToken: ''
+  accessToken: '',
+  subscriptionPlan: ''
 } ;
 
 
@@ -16,9 +17,9 @@ function userDetailsReducer(state = emptyState, action) {
         return loadedState?.userDetailsReducer || emptyState; 
       }
       case 'USER_METADATA_POPULATE':{
-        const {email, accessToken, userId, displayName, photoUrl} = action.payload;
+        const {email, accessToken, userId, displayName, photoUrl, subscriptionPlan} = action.payload;
         console.log('State is ', state)
-        return {...state, email, accessToken, userId, displayName, photoUrl};
+        return {...state, email, accessToken, userId, displayName, photoUrl, subscriptionPlan};
       }
       case 'CLEAR_USER_METADATA':
         return emptyState;

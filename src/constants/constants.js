@@ -90,6 +90,7 @@ exports.AI_REPORT_VULNS = [
   { label: "BAC Vertical Escalation", value: "BAC Vertical Escalation" },
   { label: "Password Reset Token Expiration Issues", value: "Password Reset Token Expiration Issues" },
   { label: "2FA Change Session Invalidation Issues", value: "2FA Change Session Invalidation Issues" },
+  { label: "2FA Bypass", value: "2FA Bypass" },
   { label: "Insufficient Session Management", value: "Insufficient Session Management" },
   { label: "Missing Function Level Access Control", value: "Missing Function Level Access Control" },
   { label: "Improper Authorization", value: "Improper Authorization" },
@@ -98,6 +99,154 @@ exports.AI_REPORT_VULNS = [
   { label: "Injection Flaws", value: "Injection Flaws" }, 
 ];
 
+exports.VULNERABILITY_OPTIONS = {
+  "Blind XSS": [
+    { label: "Vulnerable Parameter", type: "input" },
+    { label: "Payload Used", type: "input" },
+    { label: "Callback URL", type: "input" },
+  ],
+  "Stored XSS": [
+    { label: "Affected Input Field", type: "input" },
+    { label: "Stored Payload", type: "input" },
+  ],
+  "Reflected XSS": [
+    { label: "Vulnerable URL with Payload", type: "input" },
+    { label: "HTTP Method", type: "dropdown", options: ["GET", "POST", "PUT", "DELETE"] },
+  ],
+  "DOM Based XSS": [
+    { label: "Affected JavaScript Function", type: "input" },
+    { label: "Triggering Event", type: "input" },
+  ],
+  "SQL Injection": [
+    { label: "Vulnerable Query", type: "textarea" },
+    { label: "Database Type", type: "dropdown", options: ["MySQL", "PostgreSQL", "SQL Server", "Oracle"] },
+  ],
+  "Command Injection": [
+    { label: "Injected Command", type: "input" },
+    { label: "Vulnerable Parameter", type: "input" },
+  ],
+  "Cross-Site Request Forgery (CSRF)": [
+    { label: "Affected Endpoint", type: "input" },
+    { label: "CSRF Token Status", type: "dropdown", options: ["Missing", "Incorrect Validation"] },
+  ],
+  "Session Hijacking": [
+    { label: "Session Token", type: "input" },
+    { label: "Session Cookie Details", type: "textarea" },
+  ],
+  "Clickjacking": [
+    { label: "Vulnerable Page", type: "input" },
+    { label: "Missing X-Frame-Options Header", type: "dropdown", options: ["Yes", "No"] },
+  ],
+  "Brute-Force Attack": [
+    { label: "Targeted Endpoint", type: "input" },
+    { label: "Authentication Mechanism", type: "dropdown", options: ["Username/Password", "OTP", "PIN"] },
+  ],
+  "Directory Traversal": [
+    { label: "Vulnerable Path", type: "input" },
+    { label: "Disclosed File", type: "input" },
+  ],
+  "File Inclusion": [
+    { label: "Included File Path", type: "input" },
+    { label: "Payload Used", type: "input" },
+  ],
+  "Server-Side Request Forgery (SSRF)": [
+    { label: "Target URL", type: "input" },
+    { label: "Response Data", type: "textarea" },
+  ],
+  "Insecure Direct Object Reference": [
+    { label: "Affected Resource", type: "input" },
+    { label: "Exploitable ID", type: "input" },
+  ],
+  "Broken Access Control": [
+    { label: "Vulnerable Endpoint", type: "input" },
+    { label: "Affected User Role", type: "input" },
+  ],
+  "Security Misconfiguration": [
+    { label: "Misconfigured Setting", type: "input" },
+    { label: "Impact", type: "textarea" },
+  ],
+  "Unvalidated Redirects and Forwards": [
+    { label: "Vulnerable URL", type: "input" },
+    { label: "Redirect Destination", type: "input" },
+  ],
+  "Unrestricted Upload of Files": [
+    { label: "Upload Path", type: "input" },
+    { label: "Accepted File Types", type: "textarea" },
+  ],
+  "XML External Entities (XXE)": [
+    { label: "Vulnerable XML Input", type: "textarea" },
+    { label: "Disclosed Data", type: "textarea" },
+  ],
+  "Business Logic Errors": [
+    { label: "Error Description", type: "textarea" },
+    { label: "Impact on Business", type: "textarea" },
+  ],
+  "Improper Input Validation": [
+    { label: "Vulnerable Field", type: "input" },
+    { label: "Improperly Accepted Input", type: "textarea" },
+  ],
+  "Sensitive Information Exposure": [
+    { label: "Disclosed Information", type: "textarea" },
+    { label: "Affected Endpoint", type: "input" },
+  ],
+  "DMARC misconfiguration": [
+    { label: "DMARC Record", type: "textarea" },
+    { label: "Impact", type: "textarea" },
+  ],
+  "SPF Misconfiguration": [
+    { label: "SPF Record", type: "textarea" },
+    { label: "Impact", type: "textarea" },
+  ],
+  "Password Reset Token Expiration Issues": [
+    { label: "Token Expiration Time", type: "input" },
+    { label: "Observed Issue", type: "textarea" },
+  ],
+  "Cryptographic Failures": [
+    { label: "Weak Algorithm", type: "input" },
+    { label: "Affected Data", type: "textarea" },
+  ],
+  "Injection Flaws": [
+    { label: "Injected Payload", type: "input" },
+    { label: "Affected Query/Script", type: "textarea" },
+  ],
+  "Password Spraying": [
+    { label: "Targeted Endpoint", type: "input" },
+    { label: "Authentication Mechanism", type: "dropdown", options: ["Username/Password", "OTP", "PIN"] },
+  ],
+  "BAC Horizontal Escalation": [
+    { label: "Affected Resource", type: "input" },
+    { label: "User Role A", type: "input" },
+    { label: "User Role B", type: "input" },
+  ],
+  "BAC Vertical Escalation": [
+    { label: "Vulnerable Endpoint", type: "input" },
+    { label: "Affected Privilege Level", type: "textarea" },
+  ],
+  "2FA Change Session Invalidation Issues": [
+    { label: "Observed Behavior", type: "textarea" },
+    { label: "Expected Behavior", type: "textarea" },
+  ],
+  "2FA Bypass": [
+    { label: "Short brief on the way you bypassed", type: "textarea" },
+    { label: "Expected Behavior", type: "textarea" },
+  ],
+  "Insufficient Session Management": [
+    { label: "Session Issue Details", type: "textarea" },
+    { label: "Affected Endpoint", type: "input" },
+  ],
+  "Missing Function Level Access Control": [
+    { label: "Vulnerable Functionality", type: "input" },
+    { label: "Affected User Role", type: "input" },
+  ],
+  "Improper Authorization": [
+    { label: "Vulnerable Endpoint", type: "input" },
+    { label: "Improper Access Granted", type: "textarea" },
+  ],
+  "Lack of Transport Layer Protection": [
+    { label: "Vulnerable Resource", type: "input" },
+    { label: "Missing Protection Type", type: "dropdown", options: ["HTTPS", "SSL/TLS"] },
+  ],
+};
 
 exports.TERMS_AND_CONDITIONS = `
 <p>

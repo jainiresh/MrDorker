@@ -4,8 +4,10 @@ import DorkList from '../../../components/DorkList/DorkList';
 import { ToastContainer, toast } from 'react-toastify';
 import { GITHUB_DORKS_JSON } from '../../../constants/constants';
 import DashboardLeftPane from '../../../components/LeftPane/DashboardLeftPane/DashboardLeftPane';
+import { cleanText } from '../../../utils/jsonUtils';
 
 const GithubDork = () => {
+  console.log('Github dork')
   const [selectedTarget, setSelectedTarget] = useState('github');
   const [dorks, setDorks] = useState([]);
   const [website, setWebsite] = useState('');
@@ -34,11 +36,10 @@ const GithubDork = () => {
 
   const githubChecker = async (organization) => {
     try {
-      const response = await fetch(`https://github.com/${organization}`, {
-        mode: 'no-cors'
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/gitDork/checkOrg?organization=${cleanText(organization)}`, {
       });
       
-      // console.log('Response ', response)
+      console.log('Response ', response)
       // Check for successful response (status code in the 200s)
       if (response.status == 200) {
         toast.success("The organization exists");
@@ -73,6 +74,7 @@ const GithubDork = () => {
           <input
             type="text"
             placeholder="Enter Your organization name"
+            autoFocus
             value={website}
             onChange={handleWebsiteChange}
             className="bg-gray-700 text-white px-4 py-2 rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
@@ -82,7 +84,7 @@ const GithubDork = () => {
 >
   Check
 </button>
-        <DorkList keyHolder={'org'} dorks={dorks} handleDorkClick={handleDorkClick} website={website}/>
+        <DorkList keyHolder={'org'} dorks={dorks} handleDorkClick={handleDorkClick} website={website} errorMessage={"Enter target repository name"}/>
       </div>
       <ToastContainer />
     </div>

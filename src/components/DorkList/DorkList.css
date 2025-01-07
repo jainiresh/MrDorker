@@ -1,0 +1,32 @@
+.dork-list-container {
+    /* Adjust height as needed */
+  }
+  
+  .dork-list-header {
+    justify-content: space-between; /* Center the title */
+  }
+  
+  .dork-list {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dork-list-item {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+  }
+  
+  .dork-list-item:hover {
+    background-color: rgba(0, 0, 0, 0.2); /* Darker hover effect */
+  }
+  
+  .dork-website {
+    color: #ccc; /* Lighter color for website */
+    font-weight: normal; /* Less emphasis */
+    margin-right: 0.5rem;
+  }
+  
+  .dork-text {
+    color: #fff; /* White text */
+  }

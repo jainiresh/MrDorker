@@ -5,6 +5,8 @@ import {
   getAuth,
   signInWithPopup,
   signOut,
+  RecaptchaVerifier, 
+  signInWithPhoneNumber 
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
@@ -28,6 +30,7 @@ const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
+    console.log('Meta data ', res)
     return user;
   } catch (err) {
     console.error(err);
@@ -51,5 +54,6 @@ const logout = () => {
   console.log('Here', auth);
   signOut(auth);
 };
+
 
 export { app, auth, db, signInWithGoogle, signInWithGithub, logout };
