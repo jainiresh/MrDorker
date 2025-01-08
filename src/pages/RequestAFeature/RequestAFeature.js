@@ -1,13 +1,60 @@
 import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Make sure to import the styles
 
 const RequestAFeature = () => {
   const [email, setEmail] = useState('');
   const [suggestion, setSuggestion] = useState('');
 
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic (e.g., save to a database, send email, etc.)
-    console.log('Feature Request Submitted:', { email, suggestion });
+
+    const requestData = {
+      email: email,
+      data: suggestion,
+    };
+
+    try {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/contact/requestAFeature`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit feature request');
+      }
+
+      // Display success toast
+      toast.success('Feature Request Submitted Successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      // Optionally reset the form after successful submission
+      setEmail('');
+      setSuggestion('');
+    } catch (error) {
+      // Display error toast
+      toast.error('Error submitting feature request. Please try again.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -49,7 +96,7 @@ const RequestAFeature = () => {
             value={suggestion}
             onChange={(e) => setSuggestion(e.target.value)}
             required
-            placeholder="A community page for hackers to share thoughts could be great !"
+            placeholder="A community page for hackers to share thoughts could be great!"
             rows="4"
             className="w-full p-3 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
@@ -63,6 +110,9 @@ const RequestAFeature = () => {
           Submit Feature Request
         </button>
       </form>
+
+      {/* Toast Notifications */}
+      <ToastContainer />
     </div>
   );
 };
