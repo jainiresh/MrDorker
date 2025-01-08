@@ -1,0 +1,32 @@
+
+  .item {
+    color : white;
+    border: 1px solid #d1d5db; /* Equivalent to border-gray-300 */
+    border-radius: 0.375rem; /* Equivalent to rounded-md */
+    padding: 0.25rem 0.75rem; /* Equivalent to px-3 py-1 */
+    font-size: 0.875rem; /* Equivalent to text-sm */
+    line-height: 1.25rem;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    background-color: #2563EB;
+  }
+  
+  .item:hover {
+    background-color: #6d85a4;; /* Equivalent to hover:bg-gray-100 */
+  }
+  
+  .item.selected {
+    background-color:  #c96fec;; /* Equivalent to bg-blue-500 */
+    color: #ffffff; /* Equivalent to text-white 2563EB*/
+  }
+  
+
+  h1 , h2 , h3 , h4 , label{
+    color: white
+  }
+
+  .shadows{border-radius: 10px;
+
+    background-color: #1F2937;
+    padding: 20px;    
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  }
