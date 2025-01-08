@@ -8,8 +8,7 @@ function Navbar({userDetails}) {
   
   useEffect(() => {
     
-  }, [userDetails.email])
-  
+  }, [userDetails.email]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -18,7 +17,7 @@ function Navbar({userDetails}) {
   const dispatch= useDispatch();
   const handleLogout = () => {
     logout();
-    dispatch({type:'USER_LOGOUT_SAGA'})
+    dispatch({type:'USER_LOGOUT_SAGA'});
   }
 
   return (
@@ -102,8 +101,8 @@ function Navbar({userDetails}) {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <ul className="md:hidden bg-black text-white space-y-4 px-6 py-4">
-          <li>
+        <ul className="hidden md:flex space-x-8 mb-0 text-sm md:text-xl">     
+             <li>
             <Link
               to="#home"
               className="block hover:text-gray-400 transition"

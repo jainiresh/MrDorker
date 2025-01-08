@@ -90,6 +90,7 @@ const AiGenerator = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-[94vh] bg-gradient-to-r from-blue-500 to-purple-500" style={isLoading ? { opacity: 0.5 } : { opacity: 1 }}>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
       <div style={{ position: 'fixed', left: '4vh', top: '8vh', background:'white', padding:'1.1rem', borderRadius:'15px', fontSize:'1.5rem', fontWeight:'bold', }}>Balance Credits : {balanceCredits}</div>
       <div className="bg-white p-10 rounded-lg shadow-lg" style={{ maxWidth: "75vw" }}>
         <div className="mb-[7rem]">
