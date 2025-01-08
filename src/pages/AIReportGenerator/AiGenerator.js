@@ -5,6 +5,7 @@ import { AI_REPORT_HEADINGS, AI_REPORT_VULNS, VULNERABILITY_OPTIONS } from "../.
 import Modal from "../../components/Modal/Modal";
 import Loader from "../../components/Loader/Loader";
 import ReportModal from "../../components/Modal/ReportModal";
+import { toast } from "react-toastify";
 
 const AiGenerator = () => {
   const dispatch = useDispatch();
@@ -62,6 +63,14 @@ const AiGenerator = () => {
     setOtherDetails(value);
   }
 
+  const [hasShownToast, setHasShownToast] = useState(false);
+
+  useEffect(() => {
+    if (!hasShownToast) {
+      toast.warning("Please zoom out if you feel the design is zoomed up !");
+      setHasShownToast(true); 
+    }
+  }, [hasShownToast]); 
   const closeModal = () => setActiveVulnerability(null);
 
   // Selector to get the report data from redux state (once saga is done)

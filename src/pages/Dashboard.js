@@ -83,6 +83,7 @@ const Dashboard = () => {
       </Link> 
     ))}
   </div>
+  <div className='text-white' style={{fontWeight:'bold'}}>More tools coming soon !</div>
   <div style={{display:'flex', width:'100%'}} className="w-[100%] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
   {appData.map((tool) => (
     tool.path ? (

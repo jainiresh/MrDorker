@@ -350,3 +350,17 @@ exports.PRIVACY_POLICY = `
   <p>If you have any questions about this Privacy Policy or how we handle your data, please contact us at <strong>JAI NIRESH J</strong>, [nireshpandian191@gmail.com].</p>
 </p>
 `;
+
+
+exports.dorksExclusion = {
+  "google": {
+    "s3-files":"intext",
+    "company-files":"intext"
+  }
+}
+
+exports.aboutUsDescription = 
+`
+<b>MrDorker</b> is a project built out of a deep passion for both cybersecurity and software development engineering (SDE).<br />
+
+It serves as a one-stop platform designed specifically to assist bug bounty hunters. <br /> MrDorker consolidates all the essential tools, resources, and support needed by security researchers and ethical hackers, enabling them to efficiently hunt for vulnerabilities and enhance their bug bounty efforts. <br /><br /> Whether you're looking for tools, guides, or a community, MrDorker provides a comprehensive suite of resources to streamline and empower the bug bounty hunting experience.`

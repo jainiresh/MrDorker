@@ -20,6 +20,7 @@ import LoaderScreen from './LoaderScreen';
 import Pricing from './Payment/Pricing';
 import DevCycleProvider from '@devcycle/openfeature-web-provider';
 import { OpenFeature, useBooleanFlagValue } from '@openfeature/react-sdk';
+import RequestAFeature from './RequestAFeature/RequestAFeature';
 
 const user = { user_id: 'user_id' }; 
 const devcycleProvider = new DevCycleProvider(process.env.REACT_APP_DEVCYCLE_SDK_CLIENT_KEY, {});
@@ -73,7 +74,7 @@ const Layout = () => {
         <Routes>
           <Route element={<Login isAuthenticated={isAuthenticated}/>} path="/login"/>
           <Route element={<Register isAuthenticated={isAuthenticated}/>} path="/register"/>
-          <Route element={<Form />} path='/request-a-feature'/>
+          <Route element={<RequestAFeature />} path='/request-a-feature'/>
           <Route element={<AboutUs />} path='/about-us'/>
 
           //Private Routes

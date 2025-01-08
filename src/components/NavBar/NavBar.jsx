@@ -44,7 +44,7 @@ function Navbar({userDetails}) {
             </li> 
           }
           <li>
-            <Link to="#about" className="hover:text-gray-400 text-white text-xl transition no-underline">
+            <Link to="/about-us" className="hover:text-gray-400 text-white text-xl transition no-underline">
               About Us
             </Link>
           </li>

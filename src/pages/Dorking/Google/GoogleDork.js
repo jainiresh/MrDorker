@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LeftPane from '../../../components/LeftPane/LeftPane';
 import DorkList from '../../../components/DorkList/DorkList';
-import { GOOGLE_DORKS_JSON } from '../../../constants/constants';
+import { GOOGLE_DORKS_JSON, dorksExclusion } from '../../../constants/constants';
 import DashboardLeftPane from '../../../components/LeftPane/DashboardLeftPane/DashboardLeftPane';
 
 const GoogleDork = () => {
@@ -30,6 +30,8 @@ const GoogleDork = () => {
   const handleDorkClick = (dork) => {
     window.open('https://www.google.com/search?q=' + dork, '_blank')
   }
+
+  const dorkPrefix = dorksExclusion.google[selectedTarget];
   return (
     <div className="flex " style={{ display: 'flex', flexDirection: 'row', height:'94vh' }}>
       {/* Left Pane */}
@@ -55,7 +57,7 @@ const GoogleDork = () => {
           onChange={handleWebsiteChange}
           className="bg-gray-700 text-white px-4 py-2 rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
         />
-        <DorkList keyHolder={'site'} dorks={dorks} handleDorkClick={handleDorkClick} website={website} errorMessage={"Enter your target domain"}/>
+        <DorkList keyHolder={dorkPrefix ? dorkPrefix : 'site'} dorks={dorks} handleDorkClick={handleDorkClick} website={website} errorMessage={"Enter your target domain"}/>
       </div>
     </div>
   );

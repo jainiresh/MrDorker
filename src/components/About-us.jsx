@@ -1,101 +1,89 @@
 import React from 'react';
+import { FaGithub, FaMedium, FaEnvelope } from 'react-icons/fa'; // Importing icons from react-icons
+import { ImPacman } from 'react-icons/im'; // Importing Pacman icon
+import { aboutUsDescription } from '../constants/constants';
+
+// Define the social links data in JSON format
+const socialLinks = [
+  {
+    id: 1,
+    url: 'https://topmate.io/jai_niresh_j',
+    icon: <ImPacman />,
+    label: 'TopMate',
+  },
+  {
+    id: 2,
+    url: 'https://github.com/jainiresh',
+    icon: <FaGithub className="text-2xl" />,
+    label: 'GitHub',
+  },
+  {
+    id: 3,
+    url: 'https://medium.com/@nireshpandian19',
+    icon: <FaMedium className="text-2xl" />,
+    label: 'Medium Profile',
+  },
+  {
+    id: 4,
+    url: 'mailto:nireshpandian191@gmail.com',
+    icon: <FaEnvelope className="text-2xl" />,
+    label: 'Contact Me',
+  },
+];
 
 const AboutUs = () => {
   return (
-    <div>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        />
-        <style>
-          {`
-          .profile-section {
-            background-color: #343a40;
-            color: #fff;
-            padding: 80px 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-          }
-          .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 5px solid #fff;
-          }
-          .profile-title {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-          }
-          .profile-description {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-          }
-          .icon-box {
-            font-size: 3rem;
-            margin-bottom: 20px;
-          }
-          .icon-box i {
-            border: 2px solid #fff;
-            border-radius: 50%;
-            padding: 20px;
-            color: #fff;
-            transition: all 0.3s ease-in-out;
-          }
-          .icon-box i:hover {
-            background-color: #fff;
-            color: #343a40;
-          }
-        `}
-        </style>
+    <div className="bg-black text-white h-[94vh] flex flex-col items-center py-12">
+      {/* Container for the content */}
+      <div className="w-full max-w-5xl px-6 lg:px-0">
 
-        <div className="container-fluid">
-          <div className="row justify-content-center">
-            <div className="col-lg-8">
-              {/* Profile Section */}
-              <section className="profile-section text-center">
-              <iframe src="https://topmate.io/embed/profile/jai_niresh_j?theme=D5534D" frameborder="0"
-                  btn-style='{"backgroundColor":"#000","color":"#fff","border":"1px solid #000"}'
-                  embed-version="v1"
-                  button-text="Looking to level up your bug bounty game ? Let's connect ?"
-                  position-right="30px"
-                  position-bottom="30px"
-                  custom-padding="0px"
-                  custom-font-size="16px"
-                  custom-font-weight="500"
-                  custom-width="200px"
-                  async=""
-                  defer=""></iframe>
-                </section>
-              {/* End Profile Section */}
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-indigo-600">About Us</h1>
+          <p className="text-lg text-gray-400 mt-2">Meet the team behind the project</p>
+        </div>
+
+        {/* Profile and Info Section */}
+        <div className="flex flex-col md:flex-row lg:flex-col items-center justify-between mb-16 px-4 py-8 bg-gray-800 rounded-xl shadow-lg">
+          {/* Profile Image and Name */}
+          <div className="flex flex-col items-center flex-shrink-0 mb-6 md:mb-0">
+            <img
+              src="/profile.JPG"
+              alt="Profile"
+              className="w-32 h-32 rounded-full shadow-md border-4 border-indigo-600 mb-3"
+            />
+            <div className="ml-6">
+              <h2 className="text-3xl font-semibold text-white">JAI NIRESH J</h2>
+              <p className="text-lg text-gray-400 mt-2">Full Stack Developer / Ethical Hacker</p>
             </div>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex flex-col lg:flex-row items-center md:items-end space-y-4 mt-6 md:mt-0">
+            {socialLinks.map(({ id, url, icon, label }) => (
+              <a
+                key={id}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ marginRight: '2rem', textDecoration: 'none' }}
+                className="flex items-center text-indigo-500 hover:text-indigo-300 text-xl space-x-2"
+              >
+                {icon}
+                <span>{label}</span>
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Bootstrap JS and dependencies */}
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        {/* Font Awesome Script */}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-        {/* <iframe
-        src="https://topmate-embed.s3.ap-south-1.amazonaws.com/v1/topmate-embed.js"
-        user-profile="https://topmate.io/embed/profile/jai_niresh_j?theme=D5534D"
-        btn-style='{"backgroundColor":"#000","color":"#fff","border":"1px solid #000"}'
-        embed-version="v1"
-        button-text="Looking to level up your bug bounty game ? Let's connect ?"
-        position-right="30px"
-        position-bottom="30px"
-        custom-padding="0px"
-        custom-font-size="16px"
-        custom-font-weight="500"
-        custom-width="200px"
-        async=""
-        defer=""
-      ></iframe> */}
+        {/* Vision Section */}
+        <div className="bg-gray-800 p-8 rounded-xl shadow-lg">
+          <h3 className="text-3xl font-bold text-indigo-600 mb-4">Few Words</h3>
+          <p className="text-lg text-gray-300">
+            <span dangerouslySetInnerHTML={{__html:aboutUsDescription}} ></span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
