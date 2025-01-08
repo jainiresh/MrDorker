@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Make sure to import the styles
 
-const RequestAFeature = () => {
+const RequestAFeature = ({}) => {
   const [email, setEmail] = useState('');
   const [suggestion, setSuggestion] = useState('');
 
