@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Make sure to import the styles
+import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Make sure to import the styles
+import './RequestAFeature.css'
 
 const RequestAFeature = ({}) => {
-  const [email, setEmail] = useState('');
-  const [suggestion, setSuggestion] = useState('');
+  const [email, setEmail] = useState("");
+  const [suggestion, setSuggestion] = useState("");
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -16,20 +17,23 @@ const RequestAFeature = ({}) => {
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/contact/requestAFeature`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestData),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/contact/requestAFeature`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to submit feature request');
+        throw new Error("Failed to submit feature request");
       }
 
       // Display success toast
-      toast.success('Feature Request Submitted Successfully!', {
+      toast.success("Feature Request Submitted Successfully!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -40,11 +44,11 @@ const RequestAFeature = ({}) => {
       });
 
       // Optionally reset the form after successful submission
-      setEmail('');
-      setSuggestion('');
+      setEmail("");
+      setSuggestion("");
     } catch (error) {
       // Display error toast
-      toast.error('Error submitting feature request. Please try again.', {
+      toast.error("Error submitting feature request. Please try again.", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -53,26 +57,29 @@ const RequestAFeature = ({}) => {
         draggable: true,
         progress: undefined,
       });
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
   return (
-    <div className="bg-purple-900 text-white h-screen flex flex-col items-center justify-center py-12 px-6">
+    <div className="text-white h-screen flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-br from-gray-900 to-black">
       {/* Header Section */}
-      <h1 className="text-4xl font-bold text-indigo-400 mb-6">Request A Bug Bounty Tool To Be Added Here</h1>
-      <p className="text-lg text-gray-300 mb-6 text-center">
-        ~ I might feature you on the Honors page, in case I end up adding your idea.
+      <h1 className="text-2xl font-bold text-blue-400 mb-6">
+        Request A Bug Bounty Tool To Be Added Here
+      </h1>
+      <p className="text-sm text-gray-300 mb-6 text-center">
+        ~ I might feature you on the Honors page, in case I end up adding your
+        idea.
       </p>
 
       {/* Form Section */}
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-purple-700 p-8 rounded-xl shadow-lg"
+        className="w-full max-w-lg bg-gray-800 p-8 rounded-xl shadow-lg"
       >
         {/* Email Input */}
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-lg mb-2 text-gray-300">
+        <div className="mb-2">
+          <label htmlFor="email" className="block text-sm mb-2 text-gray-300">
             Email Address (For contact purpose):
           </label>
           <input
@@ -82,13 +89,16 @@ const RequestAFeature = ({}) => {
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="user@email.com"
-            className="w-full p-3 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full p-2 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
         </div>
 
         {/* Suggestion Input */}
-        <div className="mb-4">
-          <label htmlFor="suggestion" className="block text-lg mb-2 text-gray-300">
+        <div className="mb-2">
+          <label
+            htmlFor="suggestion"
+            className="block text-sm mb-2 text-gray-300"
+          >
             Request a feature to be added:
           </label>
           <textarea
@@ -98,17 +108,12 @@ const RequestAFeature = ({}) => {
             required
             placeholder="A community page for hackers to share thoughts could be great!"
             rows="4"
-            className="w-full p-3 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full p-1 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
         </div>
 
         {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-3 px-6 rounded-md transition duration-300"
-        >
-          Submit Feature Request
-        </button>
+        <button type="submit" className="button text-sm">Request</button>
       </form>
 
       {/* Toast Notifications */}

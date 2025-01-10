@@ -15,7 +15,7 @@ const iconStyles = {
   alignItems: 'center',
   justifyContent: 'center',
   gap: '1rem',
-  fontSize:'2rem',
+  fontSize:'1rem',
   color:'whitesmoke',
 };
 const toolsData = [
@@ -65,14 +65,14 @@ const Dashboard = () => {
     <>
     <div className="flex bg-gradient-to-br from-gray-900 to-black" style={{height:'94vh' }}>
       <div style={{justifyContent:'center', alignItems:'center', display:'flex', width:'100%', height:'100%', flexDirection:'column'}}>
-        <h1 className='text-white' style={{fontSize:'4rem'}}>Explore our tools</h1>
+        <h1 className='text-white' style={{fontSize:'1rem'}}>Explore our tools</h1>
       <div style={{width:'50vw', height:'50vh'}}>
-      <div className=" w-[100%] h-[100%] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+      <div className=" w-[100%] h-[100%] p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
     {toolsData.map((tool) => (
       <Link
         key={tool.name}
         to={tool.path}
-        className=" bg-gray-800 block rounded-lg shadow-xl text-white text-xl hover:bg-blue-600 opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
+        className=" bg-gray-800 block rounded-lg shadow-xl text-white text-Xl hover:bg-blue-600 opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
         style={{display:'flex', justifyContent:'center'}}
         // style={{ backgroundColor: tool.name === tool.name ? 'blue-600' : 'gray-800' }}
       >
@@ -83,7 +83,7 @@ const Dashboard = () => {
       </Link> 
     ))}
   </div>
-  <div className='text-white' style={{fontWeight:'bold'}}>More tools coming soon !</div>
+  <div className='text-white'>More tools coming soon !</div>
   <div style={{display:'flex', width:'100%'}} className="w-[100%] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
   {appData.map((tool) => (
     tool.path ? (

@@ -76,7 +76,7 @@ const GithubDork = () => {
             className="bg-gray-700 text-white px-4 py-2 rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
           />
           <button onClick={() => githubChecker(website)}
-  className="bg-yellow-600 hover:bg-gray-600 text-gray-900 font-bold py-2 px-4 mx-4 rounded-full"
+  className="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 mx-4 rounded-full"
 >
   Check
 </button>

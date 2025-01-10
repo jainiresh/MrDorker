@@ -33,18 +33,18 @@ const socialLinks = [
 
 const AboutUs = () => {
   return (
-    <div className="bg-black text-white h-[94vh] flex flex-col items-center py-12">
+    <div className="bg-black text-white h-[94vh] flex flex-col items-center py-12 h-full">
       {/* Container for the content */}
       <div className="w-full max-w-5xl px-6 lg:px-0">
 
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-indigo-600">About Us</h1>
+          <h1 className="text-xl font-bold text-indigo-600">About Us</h1>
           <p className="text-lg text-gray-400 mt-2">Meet the team behind the project</p>
         </div>
 
         {/* Profile and Info Section */}
-        <div className="flex flex-col md:flex-row lg:flex-col items-center justify-between mb-16 px-4 py-8 bg-gray-800 rounded-xl shadow-lg">
+        <div className="flex flex-col md:flex-row lg:flex-col items-center justify-between mb-8 px-2 py-3 bg-gray-800 rounded-xl shadow-lg">
           {/* Profile Image and Name */}
           <div className="flex flex-col items-center flex-shrink-0 mb-6 md:mb-0">
             <img

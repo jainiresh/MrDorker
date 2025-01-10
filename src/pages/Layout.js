@@ -79,7 +79,6 @@ const Layout = () => {
           <Route element={<AboutUs />} path='/about-us'/>
           <Route element={<ComingSoon />} path='/contact' />
 
-          //Private Routes
           <Route element={<PrivateRoutes/>} >
 
           <Route element={<Profile userDetails={userDetails}/>} path="/profile" />

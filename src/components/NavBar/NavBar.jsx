@@ -20,6 +20,8 @@ function Navbar({userDetails}) {
     dispatch({type:'USER_LOGOUT_SAGA'});
   }
 
+  
+
   return (
     <nav className="bg-black text-white sticky top-0 z-50 shadow-md h-[6vh]">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
