@@ -165,6 +165,7 @@ const AiGenerator = () => {
           <textarea
             id="input"
             rows="4"
+            placeholder="The reporter's name is JOHN DOE    /     Keep the Priority between Critical and High.    /    Add today's date as Date reported "
             onChange={(event) => handleOtherDetailsChange(event.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           ></textarea>
