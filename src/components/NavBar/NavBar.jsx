@@ -70,6 +70,10 @@ function Navbar({userDetails}) {
                   src={userDetails.photoUrl ? userDetails.photoUrl : '/profilePic.png'} 
                   alt="Profile pic" 
                   className="w-10 h-10 rounded-md mr-2" 
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/profilePic.png'
+                  }}
                 /> 
               </li>
             </>
@@ -80,11 +84,11 @@ function Navbar({userDetails}) {
                 Contact US
               </Link>
             </li>
-            <li>
+            {/* <li>
               <button className="hover:text-gray-400 text-white text-xl transition no-underline" onClick={() => handleLogout()}>
                 Logout
               </button>
-            </li>
+            </li> */}
           </>}
         </ul>
 
