@@ -16,6 +16,8 @@ const AiGenerator = () => {
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const [generatedReport, setGeneratedReport] = useState(""); // To store generated MD report
   const [otherDetails, setOtherDetails] = useState("");
+  const [target, setTarget] = useState("");
+
   const { email, accessToken } = useSelector(state => state.userDetailsReducer)
   const [balanceCredits, setBalanceCredits] = useState(0)
 
@@ -43,6 +45,7 @@ const AiGenerator = () => {
   const handleReportGeneration = () => {
     const payload = {
       data: {
+        "Target":target,
         "Headings to add": selectedHeadings,
         "Metadata information": optionsData,
         "Other details": otherDetails
@@ -59,6 +62,9 @@ const AiGenerator = () => {
     });
   };
 
+  const handleTargetHeadingChange = (value) => {
+    setTarget(value);
+  }
   const handleOtherDetailsChange = (value) => {
     setOtherDetails(value);
   }
@@ -114,7 +120,7 @@ const AiGenerator = () => {
           <input
             id="input"
             rows="4"
-            onChange={(event) => handleOtherDetailsChange(event.target.value)}
+            onChange={(event) => handleTargetHeadingChange(event.target.value)}
             style={{ border: '1px solid gray' }}
             className="mt-1 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-[2rem] p-4"
           ></input>
