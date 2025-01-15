@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { courses } from '../../constants/constants';
+import Carousel from './Carousel/Carousel';
 
 const Courses = () => {
     const [selectedCourse, setSelectedCourse] = useState(null);
-    const [formState, setFormState] = useState({ course: '' });
+    const [formState, setFormState] = useState({
+        course: selectedCourse?.heading || "",
+        name: "",
+        email: "",
+        phone: "",
+        customMessage : ""
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormState((prev) => ({ ...prev, [name]: value }));
+    };
     const [isModalOpen, setIsModalOpen] = useState(false);
 
 
@@ -17,7 +31,7 @@ const Courses = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://example.com/api/buy-request', formState);
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/courses/buyCourse`, formState);
             alert('Course buy request submitted successfully!');
             setIsModalOpen(false); // Close modal after submission
         } catch (error) {
@@ -29,7 +43,13 @@ const Courses = () => {
 
     return (
         <div className="min-h-screen text-white p-8"
-            style={{ backgroundImage: "url('/wallpaper.jpg')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+            style={{
+                backgroundImage: "url('/wallpaper.jpg')",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundAttachment: "fixed",
+                backgroundPosition: "center",
+            }}>
             <div className="max-w-7xl mx-auto">
                 <div>
                     <h1 className="text-4xl font-bold mb-8 text-center">Explore Our Courses</h1>
@@ -59,7 +79,7 @@ const Courses = () => {
                     </div>
 
                     {selectedCourse && (
-                        <div className="mt-12 p-8 bg-gray-800 rounded-lg shadow-2xl hover:shadow-purple-700 transition-all duration-300 transform hover:scale-105">
+                        <div className="mt-12 p-8 bg-gray-800 rounded-lg shadow-2xl hover:shadow-purple-700 transition-all duration-300 transform">
                             <h2 className="text-4xl font-bold mb-6 text-center text-white border-b-2 border-purple-600 pb-4">
                                 {selectedCourse.heading}
                             </h2>
@@ -67,23 +87,9 @@ const Courses = () => {
                                 {selectedCourse.description}
                             </p>
 
-                            <div className="mb-8 grid grid-cols-3 gap-4">
-                                <p>Image carousel here centered</p>
-                                {/* <img
-                                    className="w-full h-auto rounded-lg shadow-lg hover:shadow-purple-700 transition-all duration-300"
-                                    src={selectedCourse.images[0]} // Assuming the first image path
-                                    alt="Collage Image 1"
-                                />
-                                <img
-                                    className="w-full h-auto rounded-lg shadow-lg hover:shadow-purple-700 transition-all duration-300"
-                                    src={selectedCourse.images[0]} // Assuming the second image path
-                                    alt="Collage Image 2"
-                                />
-                                <img
-                                    className="w-full h-auto rounded-lg shadow-lg hover:shadow-purple-700 transition-all duration-300"
-                                    src={selectedCourse.images[0]} // Assuming the third image path
-                                    alt="Collage Image 3"
-                                /> */}
+
+                            <div className="mb-8 grid grid-cols-3 gap-4" style={{ display: 'flex' }}>
+                                <Carousel images={selectedCourse.images} />
                             </div>
 
                             <div style={{ display: 'flex', width: '100%' }}>
@@ -120,7 +126,15 @@ const Courses = () => {
                                         ))}
                                     </ul>
                                 </div>
+
                             </div>
+                            <button
+                                onClick={() => setIsModalOpen(true)}
+                                className="right-8 bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 shadow-lg transition w-[20rem]"
+                                style={{ borderRadius: '1rem' }}
+                            >
+                                <b style={{ fontSize: '1.5rem' }}>Buy this</b><br /> {selectedCourse.id == 1 ? `Upgrade my bug bounty game` : `Get into Bug hunting right away !`}
+                            </button>
                         </div>
                     )}
 
@@ -128,42 +142,108 @@ const Courses = () => {
                 </div>
             </div>
 
-            {/* Buy Request Button */}
-            {selectedCourse != null && <button
-                onClick={() => setIsModalOpen(true)}
-                className="fixed bottom-[50vh] right-8 bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-full shadow-lg transition w-[20rem]"
-            >
-                <b style={{ fontSize: '1.5rem' }}>Buy this</b><br /> {selectedCourse.id == 1 ? `Upgrade my bug bounty game` : `Get into Bug hunting right away !`}
-            </button>}
-
-            {/* Buy Request Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+                <div
+                    className="fixed inset-0 bg-opacity-70 flex justify-center items-center z-50"
+                    style={{
+                        backgroundImage: "url('/wallpaper.jpg')",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        backgroundAttachment: "fixed",
+                        backgroundPosition: "center",
+                    }}
+                >
                     <div className="bg-gradient-to-r from-purple-700 via-purple-800 to-purple-900 rounded-lg p-8 w-11/12 md:w-1/3 shadow-2xl transform transition-transform duration-300 hover:scale-105">
                         <h2 className="text-3xl font-bold mb-6 text-center text-white border-b-4 border-purple-500 pb-4">
                             Buy Request Form
                         </h2>
 
                         <div className="mb-6 text-center">
-                            <h3 className="text-xl font-semibold text-gray-300 mb-2">{selectedCourse?.heading}</h3>
+                            <h3 className="text-xl font-semibold text-gray-300 mb-2">
+                                {selectedCourse?.heading}
+                            </h3>
 
                             <p className="text-lg text-gray-200">
-                                <span className="text-2xl text-[gold] font-semibold">INR {selectedCourse?.price}</span>
-                                <span className="text-m text-gray-400 line-through ml-2">{selectedCourse?.slashedPrice}</span>
+                                <span className="text-2xl text-[gold] font-semibold">
+                                    INR {selectedCourse?.price}
+                                </span>
+                                <span className="text-m text-gray-400 line-through ml-2">
+                                    {selectedCourse?.slashedPrice}
+                                </span>
                             </p>
                         </div>
 
                         <form onSubmit={handleFormSubmit}>
-                            <label htmlFor="course" className="block text-gray-300 mb-2">Selected Course:</label>
+                            {/* Selected Course Field */}
+                            <label htmlFor="course" className="block text-gray-300 mb-2">
+                                Selected Course:
+                            </label>
                             <input
                                 type="text"
                                 id="course"
                                 name="course"
                                 value={formState.course}
                                 readOnly
+                                className="w-full p-3 rounded-lg bg-violet-600 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                                style={{fontWeight:'bold'}}
+                            />
+
+                            {/* Bug Hunter Name Field */}
+                            <label htmlFor="name" className="block text-gray-300 mb-2">
+                                Bug Hunter Name:
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Bug Hunter Would I Be Called"
+                                value={formState.name}
+                                onChange={handleInputChange}
                                 className="w-full p-3 rounded-lg bg-gray-700 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600"
                             />
 
+                            {/* Email Field */}
+                            <label htmlFor="email" className="block text-gray-300 mb-2">
+                                Email Address:
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="bac-expert@email.com"
+                                value={formState.email}
+                                onChange={handleInputChange}
+                                className="w-full p-3 rounded-lg bg-gray-700 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                            />
+
+                            {/* Phone Number Field */}
+                            <label htmlFor="phone" className="block text-gray-300 mb-2">
+                                Phone Number:
+                            </label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="+91 909xxxxxx5"
+                                value={formState.phone}
+                                onChange={handleInputChange}
+                                className="w-full p-3 rounded-lg bg-gray-700 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                            />
+
+                            <label htmlFor="name" className="block text-gray-300 mb-2">
+                                Custom Message:
+                            </label>
+                            <input
+                                type="text"
+                                id="customMessage"
+                                name="customMessage"
+                                placeholder="I would like to be contacted to purchase the course ASAP."
+                                value={formState.customMessage}
+                                onChange={handleInputChange}
+                                className="w-full p-3 rounded-lg bg-gray-700 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                            />
+
+                            {/* Submit Button */}
                             <button
                                 type="submit"
                                 className="w-full bg-[gold] text-black font-bold py-3 rounded-lg transition duration-200 transform hover:scale-105"
@@ -171,6 +251,7 @@ const Courses = () => {
                                 Submit
                             </button>
 
+                            {/* Close Button */}
                             <button
                                 type="button"
                                 onClick={() => setIsModalOpen(false)}
@@ -182,6 +263,7 @@ const Courses = () => {
                     </div>
                 </div>
             )}
+
 
         </div>
     );

@@ -385,7 +385,7 @@ exports.courses = [
           'Learn how to Automate your manual hunting, to hunt at ease like a king !',
       ],
       video: 'https://www.example.com/videos/bug-bounty.mp4',
-      images: ['/collage.png','/profilePic.png','/profilePic.png'],
+      images: ['/bountyImages/1.png','/bountyImages/2.png','/bountyImages/3.png','/bountyImages/4.png','/bountyImages/5.png','/bountyImages/6.png'],
       price: '4999',
       slashedPrice: '9000'
   },
@@ -395,7 +395,7 @@ exports.courses = [
       heading: 'Getting Started into BugBounty',
       description: 'Are you an Absolute beginner, who has no knowledge on cybersecurity ? Still Interested in learning and to dive into Bug Bounty Hunting ! Then you this would be the perfect choice for you.',
       
-      images: ['/collage.png','/profilePic.png','/profilePic.png'],
+      images: ['/bountyImages/1.png','/bountyImages/2.png','/bountyImages/3.png','/bountyImages/4.png','/bountyImages/5.png','/bountyImages/6.png'],
       content: [
           'Introduction to Bug Bounty',
           'In depth dive between various synonyms of bug bounty in Cybersecurity',

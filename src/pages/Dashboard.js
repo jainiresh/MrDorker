@@ -3,7 +3,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { TbCircleLetterS, TbReport, TbReportSearch } from "react-icons/tb";
 import { Link } from 'react-router-dom';
 import { RiAiGenerate } from "react-icons/ri";
-import { HiWrenchScrewdriver } from 'react-icons/hi2';
+import { IoBookSharp } from "react-icons/io5";
 import { MdLogout, MdSettings } from 'react-icons/md';
 import { logout } from '../firebase';
 import { useDispatch } from 'react-redux';
@@ -39,6 +39,11 @@ const toolsData = [
     icon: <RiAiGenerate />,
     path: "/ai-report" 
   },
+  {
+    name: "Mastery Courses",
+    icon: <IoBookSharp />,
+    path: "/courses" 
+  },
   ,
 ];
 const appData = [
@@ -63,7 +68,14 @@ const Dashboard = () => {
   
   return (
     <>
-    <div className="flex bg-gradient-to-br from-gray-900 to-black" style={{height:'94vh' }}>
+    <div className="flex " style={{
+                backgroundImage: "url('/dashboard_wallpaper_1.jpg')",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundAttachment: "fixed",
+                backgroundPosition: "center",
+                height:'94vh'
+            }}>
       <div style={{justifyContent:'center', alignItems:'center', display:'flex', width:'100%', height:'100%', flexDirection:'column'}}>
         <h1 className='text-white' style={{fontSize:'4rem'}}>Explore our tools</h1>
       <div style={{width:'50vw', height:'50vh'}}>
@@ -72,9 +84,8 @@ const Dashboard = () => {
       <Link
         key={tool.name}
         to={tool.path}
-        className=" bg-gray-800 block rounded-lg shadow-xl text-white text-xl hover:bg-blue-600 opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
+        className=" bg-gray-800 block rounded-lg shadow-xl text-xl hover:bg-[#00b4bb] opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
         style={{display:'flex', justifyContent:'center'}}
-        // style={{ backgroundColor: tool.name === tool.name ? 'blue-600' : 'gray-800' }}
       >
         <div style={iconStyles}>
           {tool.icon}
