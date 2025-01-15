@@ -62,12 +62,16 @@ const Layout = () => {
       return <LoaderScreen />
   },[loaderDetails.showLoader])
   
+  if(location.href.split('=')[1] == 'courses')
+    return <Courses />
 
-
+  const PublicRoutes = ['/request-a-feature', '/courses', '/contact', '/about-us'];
   const PrivateRoutes = () => {
     const location = useLocation();
     return isAuthenticated ? isSubscriptionModelOn ? (subscriptionPlan != "FREE" || (location.pathname == '/profile') ? <Outlet /> : <Pricing />) : <Outlet />: <Navigate to={'/login'} />
   }
+
+
   return (
    <>
        <Navbar userDetails={userDetails}/>
