@@ -62,8 +62,6 @@ const Layout = () => {
       return <LoaderScreen />
   },[loaderDetails.showLoader])
   
-  if(window.location.href.split('=')[1] == 'courses')
-    return <><Navbar userDetails={userDetails}></Navbar><Courses /></>
 
   const PublicRoutes = ['/request-a-feature', '/courses', '/contact', '/about-us'];
   const PrivateRoutes = () => {
