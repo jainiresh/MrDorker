@@ -49,6 +49,11 @@ function Navbar({userDetails}) {
             </Link>
           </li>
           <li>
+            <Link to="/courses" className="hover:text-gray-400 text-white text-xl transition no-underline">
+              Courses
+            </Link>
+          </li>
+          <li>
             <Link to="/request-a-feature" className="hover:text-gray-400 text-white text-xl transition no-underline">
               Request a Feature
             </Link>

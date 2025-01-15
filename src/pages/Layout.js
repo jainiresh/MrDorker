@@ -22,6 +22,7 @@ import DevCycleProvider from '@devcycle/openfeature-web-provider';
 import { OpenFeature, useBooleanFlagValue } from '@openfeature/react-sdk';
 import RequestAFeature from './RequestAFeature/RequestAFeature';
 import ComingSoon from './ComingSoon/ComingSoon';
+import Courses from './Courses/Courses';
 
 const user = { user_id: 'user_id' }; 
 const devcycleProvider = new DevCycleProvider(process.env.REACT_APP_DEVCYCLE_SDK_CLIENT_KEY, {});
@@ -78,6 +79,7 @@ const Layout = () => {
           <Route element={<RequestAFeature />} path='/request-a-feature'/>
           <Route element={<AboutUs />} path='/about-us'/>
           <Route element={<ComingSoon />} path='/contact' />
+          <Route element={<Courses />} path='/courses' />
 
           //Private Routes
           <Route element={<PrivateRoutes/>} >

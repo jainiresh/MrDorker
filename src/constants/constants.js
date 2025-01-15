@@ -364,3 +364,59 @@ exports.aboutUsDescription =
 <b>MrDorker</b> is a project built out of a deep passion for both cybersecurity and software development engineering (SDE).<br />
 
 It serves as a one-stop platform designed specifically to assist bug bounty hunters. <br /> MrDorker consolidates all the essential tools, resources, and support needed by security researchers and ethical hackers, enabling them to efficiently hunt for vulnerabilities and enhance their bug bounty efforts. <br /><br /> Whether you're looking for tools, guides, or a community, MrDorker provides a comprehensive suite of resources to streamline and empower the bug bounty hunting experience.`
+
+exports.courses = [
+  {
+      id: 1,
+      heading: 'Advanced Automated Broken Access Control Hunting',
+      target: 'Intermediates',
+      description: 'Master IDORS, BACs at ease, and never miss your next BAC/IDOR when you come across one.',
+      content: [
+          'Authentication`s evolution',
+          'What are BAC`s ? An indepth dive',
+          'What are IDOR`s ? An indepth dive',
+          'How to look for programs, that might contain a potential BAC/IDOR ?',
+          'How to manually hunt for BACs and IDORs',
+          'How to Automate your hunt for BACs and IDORs',
+      ],
+      benefits: [
+          'This is the time, where you get clear once and for all on BACs and IDORs',
+          'Learn how to manually hunt for BAC`s and IDOR`s with unique strategies',
+          'Learn how to Automate your manual hunting, to hunt at ease like a king !',
+      ],
+      video: 'https://www.example.com/videos/bug-bounty.mp4',
+      images: ['/collage.png','/profilePic.png','/profilePic.png'],
+      price: '4999',
+      slashedPrice: '9000'
+  },
+  {
+      id: 2,
+      target: 'Beginners',
+      heading: 'Getting Started into BugBounty',
+      description: 'Are you an Absolute beginner, who has no knowledge on cybersecurity ? Still Interested in learning and to dive into Bug Bounty Hunting ! Then you this would be the perfect choice for you.',
+      
+      images: ['/collage.png','/profilePic.png','/profilePic.png'],
+      content: [
+          'Introduction to Bug Bounty',
+          'In depth dive between various synonyms of bug bounty in Cybersecurity',
+          'Get to know the Hands On tools, required for bug hunting',
+          'Learn Reconaissance',
+          'Learn about all the basic necessities, and standard vulnerabilities',
+          'Learn Report writing',
+          'Learn how to use AI for bug hunting.',
+          'Learn about authentication related issues, and bypasses',
+          'Common often found vulnerabilities out in the wild',
+          'Public report dicussions.'
+      ],
+      benefits: [
+          'Gain an indepth knowledge on how to bug hunt in a few days',
+          'Get yourselves ready for real live website bug hunting',
+          'Get free access to our premium tool for 2 months',
+          'Learn how to hunt on real live websites',
+          'Get enrolled on the referral scheme free of cost'
+      ],
+      video: 'https://www.example.com/videos/bac-automation.mp4',
+      price: '2999',
+      slashedPrice: '5000'
+  },
+];
