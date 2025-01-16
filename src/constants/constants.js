@@ -21,9 +21,15 @@ exports.GOOGLE_DORKS_JSON = [
     { name: "Sensitive Information Exposures", id: "github" }
   ];
 
+
   exports.SHODAN_DORKS_JSON = [
-    { name: "Sensitive Information Exposures", id: "shodan" }
+    { name: "Sensitive Information Exposures", id: "shodan" },
+    { name: "Default passwords" , id: "Default-passwords"},
+    { name : "Exposed services", id:"Exposed-services"},
+    {name : "Information gathering / disclosure", id:"Information-gathering"},
+    {name : "Domain takeover" , id:"Domain-takeover"}
   ];
+
 
   exports.AI_REPORT_HEADINGS = [
     { label: 'Summary', value: 'Summary' },

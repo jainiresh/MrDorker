@@ -55,13 +55,13 @@ const ShodanDork = () => {
         <div style={{flex:1}}>
           <DashboardLeftPane name={"Shodan Dork"}/>
         </div>
-        <div style={{borderLeft:'1px solid #3D3D3D', flex:1}}>
+        <div style={{borderLeft:'1px solid #3D3D3D', flex:1, overflowY:'scroll'}}  className='bg-gray-900'>
           <LeftPane dorksJson={SHODAN_DORKS_JSON} setSelectedTarget={setSelectedTarget} />
         </div>
       </div>
 
       {/* Right Main Content Area */}
-      <div id='rightContainer' className="bg-gray-700 flex-1 p-6 overflow-y-hidden h-93vh flex-grow">
+      <div id='rightContainer' className="w-[50vw] bg-gray-700 flex-1 p-6 overflow-y-hidden h-94vh flex-grow">
         <h2 className="text-white text-2xl font-semibold mb-2">
           Enter your host/domain name of your target :
         </h2>
