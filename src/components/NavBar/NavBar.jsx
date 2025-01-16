@@ -3,6 +3,8 @@ import { logout } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import Sparkles from 'react-sparkle'
+
 function Navbar({userDetails}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
@@ -49,7 +51,19 @@ function Navbar({userDetails}) {
             </Link>
           </li>
           <li>
-            <Link to="/courses" className="hover:text-gray-400 text-white text-xl transition no-underline">
+            <Link to="/courses" className="hover:text-gray-400 text-black text-xl transition no-underline bg-[gold] p-4 rounded h-[50%]">
+            
+                    <div id="sparkle" style={{ position: 'absolute' }}>
+                      <Sparkles
+                        color="white"
+                        count={50}
+                        minSize={5}
+                        maxSize={12}
+                        overflowPx={80}
+                        fadeOutSpeed={5}
+                        flicker={false}
+                      />
+                    </div>
               Courses
             </Link>
           </li>

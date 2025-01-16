@@ -7,7 +7,7 @@ import { IoBookSharp } from "react-icons/io5";
 import { MdLogout, MdSettings } from 'react-icons/md';
 import { logout } from '../firebase';
 import { useDispatch } from 'react-redux';
-
+import Sparkles from 'react-sparkle'
 // import DashboardLeftPane from '../components/LeftPane/DashboardLeftPane/DashboardLeftPane';
 
 const iconStyles = {
@@ -68,67 +68,109 @@ const Dashboard = () => {
   
   return (
     <>
-    <div className="flex " style={{
-                backgroundImage: "url('/dashboard_wallpaper_1.jpg')",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundAttachment: "fixed",
-                backgroundPosition: "center",
-                height:'94vh'
-            }}>
-      <div style={{justifyContent:'center', alignItems:'center', display:'flex', width:'100%', height:'100%', flexDirection:'column'}}>
-        <h1 className='text-white' style={{fontSize:'4rem'}}>Explore our tools</h1>
-      <div style={{width:'50vw', height:'50vh'}}>
-      <div className=" w-[100%] h-[100%] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-    {toolsData.map((tool) => (
-      <Link
-        key={tool.name}
-        to={tool.path}
-        className=" bg-gray-800 block rounded-lg shadow-xl text-xl hover:bg-[#00b4bb] opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
-        style={{display:'flex', justifyContent:'center'}}
+      <div
+        className="flex"
+        style={{
+          backgroundImage: "url('/dashboard_wallpaper_1.jpg')",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+          backgroundPosition: "center",
+          height: '94vh',
+        }}
       >
-        <div style={iconStyles}>
-          {tool.icon}
-          <span>{tool.name}</span>
+        <div
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+            width: '100%',
+            height: '100%',
+            flexDirection: 'column',
+          }}
+        >
+          <h1 className="text-white" style={{ fontSize: '4rem' }}>
+            Explore our tools
+          </h1>
+          <div style={{ width: '50vw', height: '50vh' }}>
+            <div className="w-[100%] h-[100%] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+              {toolsData.map((tool) => (
+                <Link
+                  key={tool.name}
+                  to={tool.path}
+                  className={`block rounded-lg shadow-xl text-xl opacity-[0.8] transition-colors duration-300 no-underline relative overflow-hidden ${
+                    tool.name === "Mastery Courses"
+                      ? "bg-yellow-500 hover:bg-yellow-600 sparkle-container"
+                      : "bg-gray-800 hover:bg-[#00b4bb]"
+                  }`}
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                >
+                  <div style={iconStyles}>
+                    {tool.icon}
+                    <span>{tool.name}</span>
+                  </div>
+                  {tool.name === "Mastery Courses" && (
+                    <div id="sparkle" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                      <Sparkles
+                        color="white"
+                        count={10}
+                        minSize={12}
+                        maxSize={32}
+                        overflowPx={80}
+                        fadeOutSpeed={5}
+                        flicker={false}
+                      />
+                    </div>
+                  )}
+                </Link>
+              ))}
+            </div>
+            <div className="text-white" style={{ fontWeight: 'bold' }}>
+              More tools coming soon!
+            </div>
+            <div
+              style={{ display: 'flex', width: '100%' }}
+              className="w-[100%] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            >
+              {appData.map((tool) =>
+                tool.path ? (
+                  <Link
+                    key={tool.name}
+                    to={tool.path}
+                    className="bg-gray-800 block rounded-lg shadow-xl text-white text-xl hover:bg-blue-600 opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
+                    style={{ display: 'flex', justifyContent: 'center', padding: '1rem' }}
+                  >
+                    <div style={iconStyles}>
+                      {tool.icon}
+                      <span>{tool.name}</span>
+                    </div>
+                  </Link>
+                ) : (
+                  <button
+                    key={tool.name}
+                    className="bg-gray-800 block rounded-lg shadow-xl text-white text-xl hover:bg-blue-600 opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      padding: '1rem',
+                    }}
+                    onClick={() => handleLogout()}
+                  >
+                    <div style={iconStyles}>
+                      {tool.icon}
+                      <span>{tool.name}</span>
+                    </div>
+                  </button>
+                )
+              )}
+            </div>
+          </div>
         </div>
-      </Link> 
-    ))}
-  </div>
-  <div className='text-white' style={{fontWeight:'bold'}}>More tools coming soon !</div>
-  <div style={{display:'flex', width:'100%'}} className="w-[100%] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-  {appData.map((tool) => (
-    tool.path ? (
-      <Link
-        key={tool.name}
-        to={tool.path}
-        className="bg-gray-800 block rounded-lg shadow-xl text-white text-xl hover:bg-blue-600 opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
-        style={{display:'flex', justifyContent:'center', padding:'1rem'}}
-      >
-        <div style={iconStyles}>
-          {tool.icon}
-          <span>{tool.name}</span>
-        </div>
-      </Link>
-    ) : (
-      <button
-        key={tool.name}
-        className="bg-gray-800 block rounded-lg shadow-xl text-white text-xl hover:bg-blue-600 opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
-        style={{display:'flex', justifyContent:'center', alignItems:'center', padding:'1rem'}}
-        onClick={() => handleLogout()}
-      >
-        <div style={iconStyles}>
-          {tool.icon}
-          <span>{tool.name}</span>
-        </div>
-      </button>
-    )
-  ))}
-</div>
-  </div>
       </div>
-    </div>
     </>
   );
+  
 };
 
 export default Dashboard;
