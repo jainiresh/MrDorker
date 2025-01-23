@@ -99,6 +99,7 @@ const Courses = () => {
                       type="text"
                       id="name"
                       name="name"
+                      required
                       placeholder="Bug Hunter Would I Be Called"
                       value={formState.name}
                       onChange={handleInputChange}
@@ -114,6 +115,7 @@ const Courses = () => {
                       id="email"
                       name="email"
                       placeholder="bac-expert@email.com"
+                      required
                       value={formState.email}
                       onChange={handleInputChange}
                       className="w-full p-3 rounded-lg bg-gray-700 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600"
@@ -129,18 +131,19 @@ const Courses = () => {
                       name="phone"
                       placeholder="+91 909xxxxxx5"
                       value={formState.phone}
+                      required
                       onChange={handleInputChange}
                       className="w-full p-3 rounded-lg bg-gray-700 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600"
                     />
           
                     <label htmlFor="name" className="block text-gray-300 mb-2">
-                      Custom Message:
+                      Custom Price / Message:
                     </label>
                     <input
                       type="text"
                       id="customMessage"
                       name="customMessage"
-                      placeholder="I would like to be contacted to purchase the course ASAP."
+                      placeholder="I would like to purchase the course, but im 500 short, can i go ahead and pay the partial later ?"
                       value={formState.customMessage}
                       onChange={handleInputChange}
                       className="w-full p-3 rounded-lg bg-gray-700 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600"
