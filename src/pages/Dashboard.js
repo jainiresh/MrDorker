@@ -68,107 +68,156 @@ const Dashboard = () => {
   
   return (
     <>
+    <div
+      className="flex min-h-screen"
+      style={{
+        backgroundImage: "url('/dashboard_wallpaper_1.jpg')",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+      }}
+    >
       <div
-        className="flex"
         style={{
-          backgroundImage: "url('/dashboard_wallpaper_1.jpg')",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
-          backgroundPosition: "center",
-          height: '94vh',
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+          width: "100%",
+          height: "100%",
+          flexDirection: "column",
         }}
       >
-        <div
+        {/* Dynamic heading with responsive text size */}
+        <h1
+          className="text-white text-center"
           style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            display: 'flex',
-            width: '100%',
-            height: '100%',
-            flexDirection: 'column',
+            fontSize: "clamp(2rem, 4vw, 4rem)", // Scales with zoom levels and screen sizes
+            lineHeight: "1.2",
+            marginBottom: "1rem",
+            fontWeight: "bold",
+            marginTop:'10vh'
           }}
         >
-          <h1 className="text-white" style={{ fontSize: '4rem' }}>
-            Explore our tools
-          </h1>
-          <div style={{ width: '50vw', height: '50vh' }}>
-            <div className="w-[100%] h-[100%] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-              {toolsData.map((tool) => (
+          Explore our tools
+        </h1>
+        <div style={{ width: "50vw", height: "50vh" }}>
+          <div className="w-[100%] h-[100%] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            {toolsData.map((tool) => (
+              <Link
+                key={tool.name}
+                to={tool.path}
+                className={`block rounded-lg shadow-xl text-xl opacity-[0.8] transition-colors duration-300 no-underline relative overflow-hidden ${
+                  tool.name === "Mastery Courses"
+                    ? "bg-yellow-500 hover:bg-yellow-600 sparkle-container"
+                    : "bg-gray-800 hover:bg-[#00b4bb]"
+                }`}
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                {/* Dynamic text inside tool cards */}
+                <div
+                  style={{
+                    ...iconStyles,
+                    fontSize: "clamp(1rem, 1.5vw, 1.5rem)", // Scales tool name size dynamically
+                  }}
+                >
+                  {tool.icon}
+                  <span>{tool.name}</span>
+                </div>
+                {tool.name === "Mastery Courses" && (
+                  <div
+                    id="sparkle"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  >
+                    <Sparkles
+                      color="white"
+                      count={10}
+                      minSize={12}
+                      maxSize={32}
+                      overflowPx={80}
+                      fadeOutSpeed={5}
+                      flicker={false}
+                    />
+                  </div>
+                )}
+              </Link>
+            ))}
+          </div>
+          {/* Dynamic "More tools coming soon!" text */}
+          <div
+            className="text-white text-center"
+            style={{
+              fontWeight: "bold",
+              marginTop: "1.5rem",
+              fontSize: "clamp(1rem, 2vw, 1.5rem)", // Scales text size dynamically
+            }}
+          >
+            More tools coming soon!
+          </div>
+          <div
+            style={{ display: "flex", width: "100%" }}
+            className="w-[100%] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            {appData.map((tool) =>
+              tool.path ? (
                 <Link
                   key={tool.name}
                   to={tool.path}
-                  className={`block rounded-lg shadow-xl text-xl opacity-[0.8] transition-colors duration-300 no-underline relative overflow-hidden ${
-                    tool.name === "Mastery Courses"
-                      ? "bg-yellow-500 hover:bg-yellow-600 sparkle-container"
-                      : "bg-gray-800 hover:bg-[#00b4bb]"
-                  }`}
-                  style={{ display: 'flex', justifyContent: 'center' }}
+                  className="bg-gray-800 block rounded-lg shadow-xl text-white text-xl hover:bg-blue-600 opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "1rem",
+                  }}
                 >
-                  <div style={iconStyles}>
+                  {/* Dynamic text inside app cards */}
+                  <div
+                    style={{
+                      ...iconStyles,
+                      fontSize: "clamp(1rem, 1.5vw, 1.5rem)", // Scales dynamically
+                    }}
+                  >
                     {tool.icon}
                     <span>{tool.name}</span>
                   </div>
-                  {tool.name === "Mastery Courses" && (
-                    <div id="sparkle" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-                      <Sparkles
-                        color="white"
-                        count={10}
-                        minSize={12}
-                        maxSize={32}
-                        overflowPx={80}
-                        fadeOutSpeed={5}
-                        flicker={false}
-                      />
-                    </div>
-                  )}
                 </Link>
-              ))}
-            </div>
-            <div className="text-white" style={{ fontWeight: 'bold' }}>
-              More tools coming soon!
-            </div>
-            <div
-              style={{ display: 'flex', width: '100%' }}
-              className="w-[100%] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-            >
-              {appData.map((tool) =>
-                tool.path ? (
-                  <Link
-                    key={tool.name}
-                    to={tool.path}
-                    className="bg-gray-800 block rounded-lg shadow-xl text-white text-xl hover:bg-blue-600 opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
-                    style={{ display: 'flex', justifyContent: 'center', padding: '1rem' }}
-                  >
-                    <div style={iconStyles}>
-                      {tool.icon}
-                      <span>{tool.name}</span>
-                    </div>
-                  </Link>
-                ) : (
-                  <button
-                    key={tool.name}
-                    className="bg-gray-800 block rounded-lg shadow-xl text-white text-xl hover:bg-blue-600 opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
+              ) : (
+                <button
+                  key={tool.name}
+                  className="bg-gray-800 block rounded-lg shadow-xl text-white text-xl hover:bg-blue-600 opacity-[0.8] hover:opacity-[1] transition-colors duration-300 no-underline"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "1rem",
+                  }}
+                  onClick={() => handleLogout()}
+                >
+                  {/* Dynamic text inside logout button */}
+                  <div
                     style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      padding: '1rem',
+                      ...iconStyles,
+                      fontSize: "clamp(1rem, 1.5vw, 1.5rem)", // Scales dynamically
                     }}
-                    onClick={() => handleLogout()}
                   >
-                    <div style={iconStyles}>
-                      {tool.icon}
-                      <span>{tool.name}</span>
-                    </div>
-                  </button>
-                )
-              )}
-            </div>
+                    {tool.icon}
+                    <span>{tool.name}</span>
+                  </div>
+                </button>
+              )
+            )}
           </div>
         </div>
       </div>
-    </>
+    </div>
+  </>
+  
   );
   
 };

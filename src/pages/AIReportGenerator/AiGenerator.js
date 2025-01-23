@@ -104,118 +104,186 @@ const AiGenerator = () => {
 
 
   return (
-    <div className="flex flex-col justify-center items-center h-[94vh] bg-gradient-to-r from-blue-500 to-purple-500" style={isLoading ? { opacity: 0.5 } : { opacity: 1 }}>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-      <div style={{ position: 'fixed', left: '4vh', top: '8vh', background:'white', padding:'1.1rem', borderRadius:'15px', fontSize:'1.5rem', fontWeight:'bold', }}>Balance Credits : {balanceCredits}</div>
-      <div className="bg-white p-10 rounded-lg shadow-lg" style={{ maxWidth: "75vw" }}>
-        <div className="mb-[7rem]">
-          <h1 className="text-3xl font-bold">Generate Your Reports Effortlessly.</h1>
-          <h4 className="text-[1rem]">- With the power of AI</h4>
-        </div>
+    <div
+  className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-purple-500"
+  style={{
+    opacity: isLoading ? 0.5 : 1,
+    minHeight: '100vh', // Ensures it takes the full height of the viewport
+    width: '100%',
+  }}
+>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <div className="mb-14 flex flex-col" style={{ justifyContent: 'flex-start' }}>
-          <label htmlFor="input" className="block text-lg font-semibold font-medium text-gray-700">
-            Enter your website / (sub) domain / host / sdk name:
-          </label>
-          <input
-            id="input"
-            rows="4"
-            onChange={(event) => handleTargetHeadingChange(event.target.value)}
-            style={{ border: '1px solid gray' }}
-            className="mt-1 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-[2rem] p-4"
-          ></input>
-        </div>
-        <div className="mb-14">
-          <h2 className="text-lg font-semibold">Choose Vulnerability type :</h2>
-          <div className="flex flex-wrap gap-2" style={{ justifyContent: "center" }}>
-            {AI_REPORT_VULNS.map((vulnerability) => (
-              <button
-                key={vulnerability.value}
-                onClick={() => handleVulnerabilitySelect(vulnerability)}
-                className={`border border-gray-300 rounded-md px-3 py-1 text-sm ${selectedVulnerability === vulnerability.value
-                    ? "bg-blue-500 text-white"
-                    : "hover:bg-gray-100"
-                  }`}
-              >
-                {vulnerability.label}
-              </button>
-            ))}
-          </div>
-        </div>
+  {/* Fixed Credit Balance Box */}
+  <div
+    style={{
+      position: 'fixed',
+      left: '2%',
+      top: '8%', // Adjusted to remain responsive
+      background: 'white',
+      padding: '1.1rem',
+      borderRadius: '15px',
+      fontSize: '1.2rem', // Adjusted for responsiveness
+      fontWeight: 'bold',
+      zIndex: 10,
+      maxWidth: '90%', // Prevent overflow on smaller screens
+      boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+    }}
+  >
+    Balance Credits: {balanceCredits}
+  </div>
 
-        <div className="mb-14">
-          <h2 className="text-lg font-semibold">Choose Headings</h2>
-          <div className="flex flex-wrap gap-2" style={{ justifyContent: "center" }}>
-            {AI_REPORT_HEADINGS.map((heading) => (
-              <button
-                key={heading.value}
-                onClick={() => handleHeadingToggle(heading.value)}
-                className={`border border-gray-300 rounded-md px-3 py-1 text-sm ${selectedHeadings.includes(heading.value) ? "bg-blue-500 text-white" : "hover:bg-gray-100"}`}
-              >
-                {heading.label}
-              </button>
-            ))}
-          </div>
-        </div>
+  {/* Main Container */}
+  <div
+    className="bg-white p-10 rounded-lg shadow-lg"
+    style={{
+      maxWidth: '90%', // Adjust to fit smaller screens
+      width: '100%', // Ensure it adapts
+      marginTop: '10vh', // Keeps some space below the nav bar
+    }}
+  >
+    {/* Title */}
+    <div className="mb-[7%] text-center">
+      <h1 className="text-2xl md:text-3xl font-bold">
+        Generate Your Reports Effortlessly.
+      </h1>
+      <h4 className="text-[0.9rem] md:text-[1rem]">- With the power of AI</h4>
+    </div>
 
-        <div className="mb-4">
-          <label htmlFor="input" className="block text-lg font-semibold font-medium text-gray-700">
-            If the above options doesn't satisfy you, explain the vulnerability , along with it's details to generate your report :
-          </label>
-          <textarea
-            id="input"
-            rows="4"
-            placeholder="The reporter's name is JOHN DOE    /     Keep the Priority between Critical and High.    /    Add today's date as Date reported "
-            onChange={(event) => handleOtherDetailsChange(event.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-          ></textarea>
-        </div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handleReportGeneration}
-          type="button"
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            Generate Report <div style={{ scale: "1.3" }}><PiMagicWand /></div>
-          </div>
-        </button>
+    {/* Input Section */}
+    <div className="mb-14 flex flex-col">
+      <label
+        htmlFor="input"
+        className="block text-md md:text-lg font-medium text-gray-700"
+      >
+        Enter your website / (sub) domain / host / sdk name:
+      </label>
+      <input
+        id="input"
+        onChange={(event) => handleTargetHeadingChange(event.target.value)}
+        style={{ border: '1px solid gray' }}
+        className="mt-1 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-[2rem] p-4"
+      ></input>
+    </div>
 
-        {/* Show Loading Spinner */}
-        {isLoading && <div style={{ top: 0, left: 0, height: '100vh', width: '100vw', position: 'fixed' }}><div style={{ top: '50vh', left: '50vw', position: 'fixed' }}><Loader /></div></div>}
-
-        {/* Show Modal */}
-        {activeVulnerability && (
-          <Modal onClose={closeModal}>
-            <h2 className="text-xl font-semibold">{activeVulnerability} Options</h2>
-            {VULNERABILITY_OPTIONS[activeVulnerability]?.map((option, index) => (
-              <div key={index} className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">{option.label}</label>
-                {option.type === "input" ? (
-                  <input
-                    type="text"
-                    onChange={(e) =>
-                      handleOptionChange(activeVulnerability, option.label, e.target.value)
-                    }
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                  />
-                ) : (
-                  <textarea
-                    onChange={(e) =>
-                      handleOptionChange(activeVulnerability, option.label, e.target.value)
-                    }
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                    style={{ maxHeight: "10vh", minHeight: "2rem" }}
-                  />
-                )}
-              </div>
-            ))}
-          </Modal>
-        )}
-
-        {/* Show Report Modal after report is generated */}
-        {generatedReport && <ReportModal report={generatedReport} />}
+    {/* Vulnerability Section */}
+    <div className="mb-14">
+      <h2 className="text-md md:text-lg font-semibold">
+        Choose Vulnerability type:
+      </h2>
+      <div className="flex flex-wrap gap-2 justify-center">
+        {AI_REPORT_VULNS.map((vulnerability) => (
+          <button
+            key={vulnerability.value}
+            onClick={() => handleVulnerabilitySelect(vulnerability)}
+            className={`border border-gray-300 rounded-md px-3 py-1 text-sm ${
+              selectedVulnerability === vulnerability.value
+                ? 'bg-blue-500 text-white'
+                : 'hover:bg-gray-100'
+            }`}
+          >
+            {vulnerability.label}
+          </button>
+        ))}
       </div>
     </div>
+
+    {/* Headings Section */}
+    <div className="mb-14">
+      <h2 className="text-md md:text-lg font-semibold">Choose Headings</h2>
+      <div className="flex flex-wrap gap-2 justify-center">
+        {AI_REPORT_HEADINGS.map((heading) => (
+          <button
+            key={heading.value}
+            onClick={() => handleHeadingToggle(heading.value)}
+            className={`border border-gray-300 rounded-md px-3 py-1 text-sm ${
+              selectedHeadings.includes(heading.value)
+                ? 'bg-blue-500 text-white'
+                : 'hover:bg-gray-100'
+            }`}
+          >
+            {heading.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    {/* Textarea for Custom Vulnerabilities */}
+    <div className="mb-4">
+      <label
+        htmlFor="custom-input"
+        className="block text-md md:text-lg font-medium text-gray-700"
+      >
+        If the above options don't satisfy you, explain the vulnerability along
+        with its details to generate your report:
+      </label>
+      <textarea
+        id="custom-input"
+        rows="4"
+        placeholder="The reporter's name is JOHN DOE / Keep the Priority between Critical and High. / Add today's date as Date reported"
+        onChange={(event) => handleOtherDetailsChange(event.target.value)}
+        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+      ></textarea>
+    </div>
+
+    {/* Generate Button */}
+    <button
+      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
+      onClick={handleReportGeneration}
+      type="button"
+    >
+      <div className="flex items-center justify-center gap-2">
+        Generate Report <div style={{ transform: 'scale(1.3)' }}>{<PiMagicWand />}</div>
+      </div>
+    </button>
+
+    {/* Loader */}
+    {isLoading && (
+      <div
+        className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50"
+      >
+        <Loader />
+      </div>
+    )}
+
+    {/* Modal */}
+    {activeVulnerability && (
+      <Modal onClose={closeModal}>
+        <h2 className="text-lg md:text-xl font-semibold">
+          {activeVulnerability} Options
+        </h2>
+        {VULNERABILITY_OPTIONS[activeVulnerability]?.map((option, index) => (
+          <div key={index} className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">
+              {option.label}
+            </label>
+            {option.type === 'input' ? (
+              <input
+                type="text"
+                onChange={(e) =>
+                  handleOptionChange(activeVulnerability, option.label, e.target.value)
+                }
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              />
+            ) : (
+              <textarea
+                onChange={(e) =>
+                  handleOptionChange(activeVulnerability, option.label, e.target.value)
+                }
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                style={{ maxHeight: '10%', minHeight: '2rem' }}
+              />
+            )}
+          </div>
+        ))}
+      </Modal>
+    )}
+
+    {/* Report Modal */}
+    {generatedReport && <ReportModal report={generatedReport} />}
+  </div>
+</div>
+
   );
 };
 

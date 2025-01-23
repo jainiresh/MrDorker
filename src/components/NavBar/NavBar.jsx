@@ -23,8 +23,8 @@ function Navbar({userDetails}) {
   }
 
   return (
-    <nav className="bg-black text-white sticky top-0 z-50 shadow-md h-[6vh]">
-      <div className="container mx-auto flex justify-between items-center px-6 py-4">
+    <nav className="bg-black text-white sticky top-0 z-50 shadow-md h-[10%]">
+      <div className="container mx-auto flex justify-between items-center px-6" style={{paddingTop:'1%'}}>
         {/* Logo */}
         <div className="text-2xl font-bold uppercase tracking-wide">
           Mr.Dorker
@@ -51,7 +51,7 @@ function Navbar({userDetails}) {
             </Link>
           </li>
           <li>
-            <Link to="/courses" className="hover:text-gray-400 text-black text-xl transition no-underline bg-[gold] p-4 rounded h-[50%]">
+            <Link to="/courses" className="hover:text-gray-400 text-black text-xl transition no-underline bg-[gold] p-4 rounded" style={{maxHeight:'10%'}}>
             
                     <div id="sparkle" style={{ position: 'absolute' }}>
                       <Sparkles
