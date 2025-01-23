@@ -24,7 +24,7 @@ function Navbar({userDetails}) {
 
   return (
     <nav className="bg-black text-white sticky top-0 z-50 shadow-md h-[10%]">
-      <div className="container mx-auto flex justify-between items-center px-6" style={{paddingTop:'1%'}}>
+      <div className="container mx-auto flex justify-between items-center px-6" style={{padding:'1%'}}>
         {/* Logo */}
         <div className="text-2xl font-bold uppercase tracking-wide">
           Mr.Dorker
