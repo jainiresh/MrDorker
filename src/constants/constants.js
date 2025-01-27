@@ -393,7 +393,8 @@ exports.courses = [
       video: 'https://www.example.com/videos/bug-bounty.mp4',
       images: ['/bountyImages/1.png','/bountyImages/2.png','/bountyImages/3.png','/bountyImages/4.png','/bountyImages/5.png','/bountyImages/6.png'],
       price: '4999',
-      slashedPrice: '9000'
+      slashedPrice: '9000',
+      enrollments: 154
   },
   {
       id: 2,
@@ -423,6 +424,7 @@ exports.courses = [
       ],
       video: 'https://www.example.com/videos/bac-automation.mp4',
       price: '2999',
-      slashedPrice: '5000'
+      slashedPrice: '5000',
+      enrollments: 72
   },
 ];

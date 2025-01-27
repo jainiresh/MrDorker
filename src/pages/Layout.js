@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import ShodanDork from './Dorking/Shodan/ShodanDork';
 import AiGenerator from './AIReportGenerator/AiGenerator';
-import Form from '../components/Form';
 import AboutUs from '../components/About-us';
 import { ToastContainer, toast } from 'react-toastify';
 import LoaderScreen from './LoaderScreen';
@@ -63,7 +62,7 @@ const Layout = () => {
   },[loaderDetails.showLoader])
   
 
-  const PublicRoutes = ['/request-a-feature', '/courses', '/contact', '/about-us'];
+  // const PublicRoutes = ['/request-a-feature', '/courses', '/contact', '/about-us'];
   const PrivateRoutes = () => {
     const location = useLocation();
     return isAuthenticated ? isSubscriptionModelOn ? (subscriptionPlan != "FREE" || (location.pathname == '/profile') ? <Outlet /> : <Pricing />) : <Outlet />: <Navigate to={'/login'} />

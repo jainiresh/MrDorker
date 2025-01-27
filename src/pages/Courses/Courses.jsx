@@ -198,32 +198,37 @@ const Courses = () => {
                                     Explore Our Courses
                                 </h1>
                                 <div className="grid grid-cols-2 gap-8">
-                                    {courses.map((course) => (
-                                        <div
-                                            key={course.id}
-                                            className={`p-6 rounded-lg shadow-lg transition-all cursor-pointer hover:bg-purple-800 ${selectedCourse?.id === course.id
-                                                ? "bg-purple-800"
-                                                : "bg-gray-800"
-                                                }`}
-                                            onClick={() => handleCourseSelect(course)}
-                                        >
-                                            <span style={{ fontStyle: "italic" }}>
-                                                ~ For {course.target}
-                                            </span>
-                                            <div style={{ paddingTop: "1rem" }}>
-                                                <h2
-                                                    className="text-3xl font-semibold mb-5"
-                                                    style={{ fontWeight: "bold" }}
-                                                >
-                                                    {course.heading}
-                                                </h2>
-                                                <p className="text-gray-300" style={{ fontWeight: "bold" }}>
-                                                    {course.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
+    {courses.map((course) => (
+        <div
+            key={course.id}
+            className={`p-6 rounded-lg shadow-lg transition-all cursor-pointer hover:bg-purple-800 ${selectedCourse?.id === course.id
+                ? "bg-purple-800"
+                : "bg-gray-800"
+                }`}
+            onClick={() => handleCourseSelect(course)}
+        >
+            <span style={{ fontStyle: "italic" }}>
+                ~ For {course.target}
+            </span>
+            <div style={{ paddingTop: "1rem" }}>
+                <h2
+                    className="text-3xl font-semibold mb-5"
+                    style={{ fontWeight: "bold" }}
+                >
+                    {course.heading}
+                </h2>
+                <p className="text-gray-300" style={{ fontWeight: "bold" }}>
+                    {course.description}
+                </p>
+            </div>
+            <div className="pt-4">
+                <span className="text-lg font-bold" style={{color:'darkgray'}}>Current Enrollments: </span>
+                <span className="text-2xl font-extrabold" style={{color:'gold'}}>{course.enrollments.toLocaleString()}</span>
+            </div>
+        </div>
+    ))}
+</div>
+
                                 <div style={{ marginTop: "10rem" }}>
                                     {selectedCourse == null && (
                                         <div className="text-center">
