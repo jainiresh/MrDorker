@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { courses } from "../../constants/constants";
+import { courses as initialCourses } from "../../constants/constants";
 import Carousel from "./Carousel/Carousel";
 import './Carousel/Courses.css'
 
@@ -18,6 +18,42 @@ const Courses = () => {
         customMessage: "",
     });
 
+    const [courses, setCourses] = useState([]); // State to hold courses
+
+    useEffect(() => {
+        async function populateCourses() {
+            try {
+                // Resolve all promises from map using Promise.all
+                const updatedCourses = await Promise.all(
+                    initialCourses.map(async (course) => {
+                        let enrollmentData;
+                        try {
+                            enrollmentData = await fetchEnrollmentData(course.heading);
+                        } catch (error) {
+                            console.error('Error fetching enrollment data for', course.heading, error);
+                            enrollmentData = -1; 
+                        }
+                        return {
+                            ...course,
+                            enrollments: enrollmentData,
+                        };
+                    })
+                );
+                setCourses(updatedCourses); 
+            } catch (err) {
+                console.error("Error in populateCourses:", err);
+            }
+        }
+
+        populateCourses();
+    }, []); 
+
+    if(courses == [])
+        return <span>Loading ...</span>
+
+    const fetchEnrollmentData = async(heading) => {
+        return (await axios.get(`${process.env.REACT_APP_SERVER_URL}/courses/getEnrollments?heading=${heading}`)).data;
+    }
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormState((prev) => ({ ...prev, [name]: value }));
@@ -223,7 +259,7 @@ const Courses = () => {
             </div>
             <div className="pt-4">
                 <span className="text-lg font-bold" style={{color:'darkgray'}}>Current Enrollments: </span>
-                <span className="text-2xl font-extrabold" style={{color:'gold'}}>{course.enrollments.toLocaleString()}</span>
+                <span className="text-2xl font-extrabold" style={{color:'gold'}}>{course.enrollments == -1 ? 'Unavailable' : course.enrollments.toLocaleString()}</span>
             </div>
         </div>
     ))}
